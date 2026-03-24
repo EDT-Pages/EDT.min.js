@@ -1,0 +1,948 @@
+const userID = "5ef08dba-8fdb-4a9b-8e9f-296620b23c80", Password = "4fc532c8ef4b5956332dae7630e201da792b90336aeab2537212db5b";
+
+import { connect as e } from "cloudflare:sockets";
+
+let t, r, n = "", a = null, s = 0, o = "", i = {}, c = 0, l = 1, u = [ "*tapecontent.net", "*cloudatacdn.com", "*loadshare.org", "*cdn-centaurus.com", "scholar.google.com" ];
+
+export default {
+    async fetch(e, t, r) {
+        n = e.cf.colo + ".proxyIP.cmliuSSSS.NET";
+        const a = (e.headers.get("Upgrade") || "").toLowerCase(), s = (e.headers.get("content-type") || "").toLowerCase();
+        if ("websocket" === a) return await A(e), await async function(e, t) {
+            const r = new WebSocketPair, [n, a] = Object.values(r);
+            a.accept(), a.binaryType = "arraybuffer";
+            let s = {
+                s: null,
+                p: null,
+                r: null
+            }, o = 0;
+            const i = e.headers.get("sec-websocket-protocol") || "", c = function(e, t) {
+                let r = 0;
+                return new ReadableStream({
+                    start(n) {
+                        e.addEventListener("message", e => {
+                            r || n.enqueue(e.data);
+                        }), e.addEventListener("close", () => {
+                            r || (p(e), n.close());
+                        }), e.addEventListener("error", e => n.error(e));
+                        const {earlyData: a, error: s} = function(e) {
+                            if (!e) return {
+                                error: null
+                            };
+                            try {
+                                const t = atob(e.replace(/-/g, "+").replace(/_/g, "/")), r = new Uint8Array(t.length);
+                                for (let e = 0; e < t.length; e++) r[e] = t.charCodeAt(e);
+                                return {
+                                    earlyData: r.buffer,
+                                    error: null
+                                };
+                            } catch (e) {
+                                return {
+                                    error: e
+                                };
+                            }
+                        }(t);
+                        s ? n.error(s) : a && n.enqueue(a);
+                    },
+                    cancel() {
+                        r = 1, p(e);
+                    }
+                });
+            }(a, i);
+            let l = null, u = null, f = null;
+            const g = () => {
+                if (f) {
+                    try {
+                        f.releaseLock();
+                    } catch (e) {}
+                    f = null;
+                }
+                u = null;
+            }, b = async (e, t = 1) => {
+                const r = s.s;
+                if (!r) return 0;
+                r !== u && (g(), u = r, f = r.writable.getWriter());
+                try {
+                    return await f.write(e), 1;
+                } catch (r) {
+                    if (g(), t && "function" == typeof s.r) return await s.r(), await b(e, 0);
+                    throw r;
+                }
+            };
+            return c.pipeTo(new WritableStream({
+                async write(e) {
+                    if (o) return await d(e, a, null);
+                    if (!await b(e)) {
+                        if (null === l) {
+                            const t = new Uint8Array(e);
+                            l = t.byteLength >= 58 && 13 === t[56] && 10 === t[57];
+                        }
+                        if (!await b(e)) if (l) {
+                            const r = h(e);
+                            if (r?.h) throw Error();
+                            const {port: n, hostname: o, c: i} = r;
+                            if (L(o)) throw Error();
+                            await y(o, n, i, a, null, s, t);
+                        } else {
+                            const r = w(e, t);
+                            if (r?.h) throw Error();
+                            const {port: n, hostname: i, i: c, v: l, u: u} = r;
+                            if (L(i)) throw Error();
+                            if (u) {
+                                if (53 !== n) throw Error();
+                                o = 1;
+                            }
+                            const f = new Uint8Array([ l[0], 0 ]), h = e.slice(c);
+                            if (o) return d(h, a, f);
+                            await y(i, n, h, a, f, s, t);
+                        }
+                    }
+                },
+                close() {
+                    g();
+                },
+                abort() {
+                    g();
+                }
+            })).catch(e => {
+                g();
+            }), new Response(null, {
+                status: 101,
+                webSocket: n
+            });
+        }(e, userID);
+        if ("POST" === e.method) {
+            await A(e);
+            const t = e.headers.get("Referer") || "";
+            return t.includes("x_padding", 14) || t.includes("x_padding=") || !s.startsWith("application/grpc") ? await async function(e, t) {
+                if (!e.body) return new Response("Bad Request", {
+                    status: 400
+                });
+                const r = e.body.getReader(), n = await async function(e, t) {
+                    const r = new TextDecoder, n = Password, a = (new TextEncoder).encode(n), s = e => {
+                        const n = e.byteLength;
+                        if (n < 18) return {
+                            s: 0
+                        };
+                        if (g(e.subarray(1, 17)) !== t) return {
+                            s: 1
+                        };
+                        const a = 18 + e[17];
+                        if (n < a + 1) return {
+                            s: 0
+                        };
+                        const s = e[a];
+                        if (1 !== s && 2 !== s) return {
+                            s: 1
+                        };
+                        const o = a + 1;
+                        if (n < o + 3) return {
+                            s: 0
+                        };
+                        const i = e[o] << 8 | e[o + 1], c = e[o + 2], l = o + 3;
+                        let u = -1, f = "";
+                        if (1 === c) {
+                            if (n < l + 4) return {
+                                s: 0
+                            };
+                            f = `${e[l]}.${e[l + 1]}.${e[l + 2]}.${e[l + 3]}`, u = l + 4;
+                        } else if (2 === c) {
+                            if (n < l + 1) return {
+                                s: 0
+                            };
+                            const t = e[l];
+                            if (n < l + 1 + t) return {
+                                s: 0
+                            };
+                            f = r.decode(e.subarray(l + 1, l + 1 + t)), u = l + 1 + t;
+                        } else {
+                            if (3 !== c) return {
+                                s: 1
+                            };
+                            {
+                                if (n < l + 16) return {
+                                    s: 0
+                                };
+                                const t = [];
+                                for (let r = 0; r < 8; r++) {
+                                    const n = l + 2 * r;
+                                    t.push((e[n] << 8 | e[n + 1]).toString(16));
+                                }
+                                f = t.join(":"), u = l + 16;
+                            }
+                        }
+                        return f ? {
+                            s: 2,
+                            r: {
+                                p: "vless",
+                                hostname: f,
+                                port: i,
+                                u: 2 === s,
+                                d: e.subarray(u),
+                                r: new Uint8Array([ e[0], 0 ])
+                            }
+                        } : {
+                            s: 1
+                        };
+                    }, o = e => {
+                        const t = e.byteLength;
+                        if (t < 58) return {
+                            s: 0
+                        };
+                        if (13 !== e[56] || 10 !== e[57]) return {
+                            s: 1
+                        };
+                        for (let t = 0; t < 56; t++) if (e[t] !== a[t]) return {
+                            s: 1
+                        };
+                        if (t < 60) return {
+                            s: 0
+                        };
+                        if (1 !== e[58]) return {
+                            s: 1
+                        };
+                        const n = e[59];
+                        let s = 60, o = "";
+                        if (1 === n) {
+                            if (t < s + 4) return {
+                                s: 0
+                            };
+                            o = `${e[s]}.${e[s + 1]}.${e[s + 2]}.${e[s + 3]}`, s += 4;
+                        } else if (3 === n) {
+                            if (t < s + 1) return {
+                                s: 0
+                            };
+                            const n = e[s];
+                            if (t < s + 1 + n) return {
+                                s: 0
+                            };
+                            o = r.decode(e.subarray(s + 1, s + 1 + n)), s += 1 + n;
+                        } else {
+                            if (4 !== n) return {
+                                s: 1
+                            };
+                            {
+                                if (t < s + 16) return {
+                                    s: 0
+                                };
+                                const r = [];
+                                for (let t = 0; t < 8; t++) {
+                                    const n = s + 2 * t;
+                                    r.push((e[n] << 8 | e[n + 1]).toString(16));
+                                }
+                                o = r.join(":"), s += 16;
+                            }
+                        }
+                        return o ? t < s + 4 ? {
+                            s: 0
+                        } : 13 !== e[s + 2] || 10 !== e[s + 3] ? {
+                            s: 1
+                        } : {
+                            s: 2,
+                            r: {
+                                p: "trojan",
+                                hostname: o,
+                                port: e[s] << 8 | e[s + 1],
+                                u: 0,
+                                d: e.subarray(s + 4),
+                                r: null
+                            }
+                        } : {
+                            s: 1
+                        };
+                    };
+                    let i = new Uint8Array(1024), c = 0;
+                    for (;;) {
+                        const {value: t, done: r} = await e.read();
+                        if (r) {
+                            if (0 === c) return null;
+                            break;
+                        }
+                        const n = t instanceof Uint8Array ? t : new Uint8Array(t);
+                        if (c + n.byteLength > i.byteLength) {
+                            const e = new Uint8Array(Math.max(2 * i.byteLength, c + n.byteLength));
+                            e.set(i.subarray(0, c)), i = e;
+                        }
+                        i.set(n, c), c += n.byteLength;
+                        const a = i.subarray(0, c), l = o(a);
+                        if (2 === l.s) return {
+                            ...l.r,
+                            reader: e
+                        };
+                        const u = s(a);
+                        if (2 === u.s) return {
+                            ...u.r,
+                            reader: e
+                        };
+                        if (1 === l.s && 1 === u.s) return null;
+                    }
+                    const l = i.subarray(0, c), u = o(l);
+                    if (2 === u.s) return {
+                        ...u.r,
+                        reader: e
+                    };
+                    const f = s(l);
+                    return 2 === f.s && f.r;
+                }(r, t);
+                if (!n) {
+                    try {
+                        r.releaseLock();
+                    } catch (e) {}
+                    return new Response("Invalid request", {
+                        status: 400
+                    });
+                }
+                if (L(n.hostname)) {
+                    try {
+                        r.releaseLock();
+                    } catch (e) {}
+                    return new Response("Forbidden", {
+                        status: 403
+                    });
+                }
+                if (n.u && 53 !== n.port) {
+                    try {
+                        r.releaseLock();
+                    } catch (e) {}
+                    return new Response("UDP is not supported", {
+                        status: 400
+                    });
+                }
+                const a = {
+                    s: null,
+                    p: null,
+                    r: null
+                };
+                let s = null, o = null;
+                const i = new Headers({
+                    "Content-Type": "application/octet-stream",
+                    "X-Accel-Buffering": "no",
+                    "Cache-Control": "no-store"
+                }), c = () => {
+                    if (o) {
+                        try {
+                            o.releaseLock();
+                        } catch (e) {}
+                        o = null;
+                    }
+                    s = null;
+                }, l = () => {
+                    const e = a.s;
+                    return e ? (e !== s && (c(), s = e, o = e.writable.getWriter()), o) : null;
+                };
+                return new Response(new ReadableStream({
+                    async start(e) {
+                        let s = 0, o = n.r;
+                        const i = {
+                            readyState: WebSocket.OPEN,
+                            send(t) {
+                                if (!s) try {
+                                    e.enqueue(function(e) {
+                                        return e instanceof Uint8Array ? e : e instanceof ArrayBuffer ? new Uint8Array(e) : ArrayBuffer.isView(e) ? new Uint8Array(e.buffer, e.byteOffset, e.byteLength) : new Uint8Array(e);
+                                    }(t));
+                                } catch (e) {
+                                    s = 1, this.readyState = WebSocket.CLOSED;
+                                }
+                            },
+                            close() {
+                                if (!s) {
+                                    s = 1, this.readyState = WebSocket.CLOSED;
+                                    try {
+                                        e.close();
+                                    } catch (e) {}
+                                }
+                            }
+                        }, u = async (e, t = 1) => {
+                            const r = l();
+                            if (!r) return 0;
+                            try {
+                                return await r.write(e), 1;
+                            } catch (r) {
+                                if (c(), t && "function" == typeof a.r) return await a.r(), await u(e, 0);
+                                throw r;
+                            }
+                        };
+                        try {
+                            for (n.u ? n.d?.byteLength && (await d(n.d, i, o), o = null) : await y(n.hostname, n.port, n.d, i, n.r, a, t); ;) {
+                                const {done: e, value: t} = await r.read();
+                                if (e) break;
+                                if (t && 0 !== t.byteLength) if (n.u) await d(t, i, o), o = null; else if (!await u(t)) throw Error();
+                            }
+                            if (!n.u) {
+                                const t = l();
+                                if (t) try {
+                                    await t.close();
+                                } catch (e) {}
+                            }
+                        } catch (e) {
+                            p(i);
+                        } finally {
+                            c();
+                            try {
+                                r.releaseLock();
+                            } catch (e) {}
+                        }
+                    },
+                    cancel() {
+                        c();
+                        try {
+                            a.s?.close();
+                        } catch (e) {}
+                        try {
+                            r.releaseLock();
+                        } catch (e) {}
+                    }
+                }), {
+                    status: 200,
+                    headers: i
+                });
+            }(e, userID) : await async function(e, t) {
+                if (!e.body) return new Response("Bad Request", {
+                    status: 400
+                });
+                const r = e.body.getReader(), n = {
+                    s: null,
+                    p: null,
+                    r: null
+                };
+                let a = 0, s = null, o = null, i = null;
+                const c = new Headers({
+                    "Content-Type": "application/grpc",
+                    "grpc-status": "0",
+                    "X-Accel-Buffering": "no",
+                    "Cache-Control": "no-store"
+                });
+                return new Response(new ReadableStream({
+                    async start(e) {
+                        let c = 0, l = [], u = 0, f = null;
+                        const p = {
+                            readyState: WebSocket.OPEN,
+                            send(e) {
+                                if (c) return;
+                                const t = e instanceof Uint8Array ? e : new Uint8Array(e), r = [];
+                                let n = t.byteLength >>> 0;
+                                for (;n > 127; ) r.push(127 & n | 128), n >>>= 7;
+                                r.push(n);
+                                const a = new Uint8Array(r), s = 1 + a.length + t.byteLength, o = new Uint8Array(5 + s);
+                                o[0] = 0, o[1] = s >>> 24 & 255, o[2] = s >>> 16 & 255, o[3] = s >>> 8 & 255, o[4] = 255 & s, 
+                                o[5] = 10, o.set(a, 6), o.set(t, 6 + a.length), l.push(o), u += o.byteLength, u >= 65536 ? g() : f || (f = setTimeout(g, 20));
+                            },
+                            close() {
+                                if (this.readyState !== WebSocket.CLOSED) {
+                                    g(1), c = 1, this.readyState = WebSocket.CLOSED;
+                                    try {
+                                        e.close();
+                                    } catch (e) {}
+                                }
+                            }
+                        }, g = (t = 0) => {
+                            if (f && (clearTimeout(f), f = null), !t && c || 0 === u) return;
+                            const r = new Uint8Array(u);
+                            let n = 0;
+                            for (const e of l) r.set(e, n), n += e.byteLength;
+                            l = [], u = 0;
+                            try {
+                                e.enqueue(r);
+                            } catch (e) {
+                                c = 1, p.readyState = WebSocket.CLOSED;
+                            }
+                        }, b = () => {
+                            if (i) {
+                                try {
+                                    i.releaseLock();
+                                } catch (e) {}
+                                i = null;
+                            }
+                            o = null;
+                        }, A = async (e, t = 1) => {
+                            const r = n.s;
+                            if (!r) return 0;
+                            r !== o && (b(), o = r, i = r.writable.getWriter());
+                            try {
+                                return await i.write(e), 1;
+                            } catch (r) {
+                                if (b(), t && "function" == typeof n.r) return await n.r(), await A(e, 0);
+                                throw r;
+                            }
+                        };
+                        try {
+                            let e = new Uint8Array(0);
+                            for (;;) {
+                                const {done: o, value: i} = await r.read();
+                                if (o) break;
+                                if (!i || 0 === i.byteLength) continue;
+                                const c = i instanceof Uint8Array ? i : new Uint8Array(i), l = new Uint8Array(e.length + c.length);
+                                for (l.set(e, 0), l.set(c, e.length), e = l; e.byteLength >= 5; ) {
+                                    const r = 5 + (e[1] << 24 >>> 0 | e[2] << 16 | e[3] << 8 | e[4]);
+                                    if (e.byteLength < r) break;
+                                    const o = e.slice(5, r);
+                                    if (e = e.slice(r), !o.byteLength) continue;
+                                    let i = o;
+                                    if (i.byteLength >= 2 && 10 === i[0]) {
+                                        let e = 0, t = 1, r = 0;
+                                        for (;t < i.length; ) {
+                                            if (!(128 & i[t++])) {
+                                                r = 1;
+                                                break;
+                                            }
+                                            if (e += 7, e > 35) break;
+                                        }
+                                        r && (i = i.slice(t));
+                                    }
+                                    if (i.byteLength) if (a) await d(i, p, null); else if (n.s) {
+                                        if (!await A(i)) throw Error();
+                                    } else {
+                                        let e;
+                                        e = i instanceof ArrayBuffer ? i : ArrayBuffer.isView(i) ? i.buffer.slice(i.byteOffset, i.byteOffset + i.byteLength) : new Uint8Array(i).buffer;
+                                        const r = new Uint8Array(e);
+                                        if (null === s && (s = r.byteLength >= 58 && 13 === r[56] && 10 === r[57]), s) {
+                                            const r = h(e);
+                                            if (r?.h) throw Error();
+                                            const {port: a, hostname: s, c: o} = r;
+                                            if (L(s)) throw Error();
+                                            await y(s, a, o, p, null, n, t);
+                                        } else {
+                                            const r = w(e, t);
+                                            if (r?.h) throw Error();
+                                            const {port: s, hostname: o, i: i, v: c, u: l} = r;
+                                            if (L(o)) throw Error();
+                                            if (l) {
+                                                if (53 !== s) throw Error();
+                                                a = 1;
+                                            }
+                                            const u = new Uint8Array([ c[0], 0 ]);
+                                            p.send(u);
+                                            const f = e.slice(i);
+                                            a ? await d(f, p, null) : await y(o, s, f, p, null, n, t);
+                                        }
+                                    }
+                                }
+                                g();
+                            }
+                        } catch (e) {} finally {
+                            b(), (() => {
+                                if (!c) {
+                                    if (g(1), c = 1, p.readyState = WebSocket.CLOSED, f && clearTimeout(f), i) {
+                                        try {
+                                            i.releaseLock();
+                                        } catch (e) {}
+                                        i = null;
+                                    }
+                                    o = null;
+                                    try {
+                                        r.releaseLock();
+                                    } catch (e) {}
+                                    try {
+                                        n.s?.close();
+                                    } catch (e) {}
+                                    try {
+                                        e.close();
+                                    } catch (e) {}
+                                }
+                            })();
+                        }
+                    },
+                    cancel() {
+                        try {
+                            n.s?.close();
+                        } catch (e) {}
+                        try {
+                            r.releaseLock();
+                        } catch (e) {}
+                    }
+                }), {
+                    status: 200,
+                    headers: c
+                });
+            }(e, userID);
+        }
+        return new Response("Hello World!");
+    }
+};
+
+function f(e) {
+    return e?.byteLength ?? e?.length ?? 0;
+}
+
+function h(e) {
+    const t = Password;
+    if (e.byteLength < 56) return {
+        h: 1
+    };
+    if (13 !== new Uint8Array(e.slice(56, 57))[0] || 10 !== new Uint8Array(e.slice(57, 58))[0]) return {
+        h: 1
+    };
+    if ((new TextDecoder).decode(e.slice(0, 56)) !== t) return {
+        h: 1
+    };
+    const r = e.slice(58);
+    if (r.byteLength < 6) return {
+        h: 1
+    };
+    const n = new DataView(r);
+    if (1 !== n.getUint8(0)) return {
+        h: 1
+    };
+    let a = 0, s = 2, o = "";
+    switch (n.getUint8(1)) {
+      case 1:
+        a = 4, o = new Uint8Array(r.slice(s, s + a)).join(".");
+        break;
+
+      case 3:
+        a = new Uint8Array(r.slice(s, s + 1))[0], s += 1, o = (new TextDecoder).decode(r.slice(s, s + a));
+        break;
+
+      case 4:
+        a = 16;
+        const e = new DataView(r.slice(s, s + a)), t = [];
+        for (let r = 0; r < 8; r++) t.push(e.getUint16(2 * r).toString(16));
+        o = t.join(":");
+        break;
+
+      default:
+        return {
+            h: 1
+        };
+    }
+    if (!o) return {
+        h: 1
+    };
+    const i = s + a, c = r.slice(i, i + 2);
+    return {
+        h: 0,
+        port: new DataView(c).getUint16(0),
+        hostname: o,
+        c: r.slice(i + 4)
+    };
+}
+
+function w(e, t) {
+    if (e.byteLength < 24) return {
+        h: 1
+    };
+    const r = new Uint8Array(e.slice(0, 1));
+    if (g(new Uint8Array(e.slice(1, 17))) !== t) return {
+        h: 1
+    };
+    const n = new Uint8Array(e.slice(17, 18))[0], a = new Uint8Array(e.slice(18 + n, 19 + n))[0];
+    let s = 0;
+    if (1 !== a) {
+        if (2 !== a) return {
+            h: 1
+        };
+        s = 1;
+    }
+    const o = 19 + n, i = new DataView(e.slice(o, o + 2)).getUint16(0);
+    let c = o + 2, l = 0, u = c + 1, f = "";
+    switch (new Uint8Array(e.slice(c, u))[0]) {
+      case 1:
+        l = 4, f = new Uint8Array(e.slice(u, u + l)).join(".");
+        break;
+
+      case 2:
+        l = new Uint8Array(e.slice(u, u + 1))[0], u += 1, f = (new TextDecoder).decode(e.slice(u, u + l));
+        break;
+
+      case 3:
+        l = 16;
+        const t = [], r = new DataView(e.slice(u, u + l));
+        for (let e = 0; e < 8; e++) t.push(r.getUint16(2 * e).toString(16));
+        f = t.join(":");
+        break;
+
+      default:
+        return {
+            h: 1
+        };
+    }
+    return f ? {
+        h: 0,
+        port: i,
+        hostname: f,
+        u: s,
+        i: u + l,
+        v: r
+    } : {
+        h: 1
+    };
+}
+
+async function y(o, h, w, y, d, g, L) {
+    let A = 0;
+    async function k(e, t = 1e3) {
+        await Promise.race([ e.opened, new Promise((e, r) => setTimeout(() => r(Error()), t)) ]);
+    }
+    async function U(t, r, n = null, a = null, s = 1) {
+        let o;
+        if (a && a.length > 0) for (let t = 0; t < a.length; t++) {
+            const r = (c + t) % a.length, [s, i] = a[r];
+            try {
+                if (o = e({
+                    hostname: s,
+                    port: i
+                }), await k(o), f(n) > 0) {
+                    const e = o.writable.getWriter();
+                    await e.write(n), e.releaseLock();
+                }
+                return c = r, o;
+            } catch (e) {
+                try {
+                    o?.close?.();
+                } catch (e) {}
+                continue;
+            }
+        }
+        if (s) {
+            if (o = e({
+                hostname: t,
+                port: r
+            }), await k(o), f(n) > 0) {
+                const e = o.writable.getWriter();
+                await e.write(n), e.releaseLock();
+            }
+            return o;
+        }
+        throw p(y), Error();
+    }
+    async function m(s = 1) {
+        if (g.p) return void await g.p;
+        const c = s && !A && f(w) > 0, u = c ? w : null, k = (async () => {
+            let s;
+            if ("socks5" === a) s = await async function(t, r, n) {
+                const {username: a, password: s, hostname: o, port: c} = i, l = e({
+                    hostname: o,
+                    port: c
+                }), u = l.writable.getWriter(), h = l.readable.getReader();
+                try {
+                    const e = a && s ? new Uint8Array([ 5, 2, 0, 2 ]) : new Uint8Array([ 5, 1, 0 ]);
+                    await u.write(e);
+                    let o = await h.read();
+                    if (o.done || o.value.byteLength < 2) throw Error();
+                    const i = new Uint8Array(o.value)[1];
+                    if (2 === i) {
+                        if (!a || !s) throw Error();
+                        const e = (new TextEncoder).encode(a), t = (new TextEncoder).encode(s), r = new Uint8Array([ 1, e.length, ...e, t.length, ...t ]);
+                        if (await u.write(r), o = await h.read(), o.done || 0 !== new Uint8Array(o.value)[1]) throw Error();
+                    } else if (0 !== i) throw Error();
+                    const c = (new TextEncoder).encode(t), w = new Uint8Array([ 5, 1, 0, 3, c.length, ...c, r >> 8, 255 & r ]);
+                    if (await u.write(w), o = await h.read(), o.done || 0 !== new Uint8Array(o.value)[1]) throw Error();
+                    return f(n) > 0 && await u.write(n), u.releaseLock(), h.releaseLock(), l;
+                } catch (e) {
+                    try {
+                        u.releaseLock();
+                    } catch (e) {}
+                    try {
+                        h.releaseLock();
+                    } catch (e) {}
+                    try {
+                        l.close();
+                    } catch (e) {}
+                    throw e;
+                }
+            }(o, h, u); else if ("http" === a || "https" === a) s = await async function(t, r, n) {
+                const {username: a, password: s, hostname: o, port: c} = i, l = e({
+                    hostname: o,
+                    port: c
+                }), u = l.writable.getWriter(), h = l.readable.getReader();
+                try {
+                    const e = `CONNECT ${t}:${r} HTTP/1.1\r\nHost: ${t}:${r}\r\n${a && s ? `Proxy-Authorization: Basic ${btoa(`${a}:${s}`)}\r\n` : ""}User-Agent: Mozilla/5.0\r\nConnection: keep-alive\r\n\r\n`;
+                    await u.write((new TextEncoder).encode(e));
+                    let o = new Uint8Array(0), i = -1, c = 0;
+                    for (;-1 === i && c < 8192; ) {
+                        const {done: e, value: t} = await h.read();
+                        if (e) throw Error();
+                        o = new Uint8Array([ ...o, ...t ]), c = o.length;
+                        const r = o.findIndex((e, t) => t < o.length - 3 && 13 === o[t] && 10 === o[t + 1] && 13 === o[t + 2] && 10 === o[t + 3]);
+                        -1 !== r && (i = r + 4);
+                    }
+                    if (-1 === i) throw Error();
+                    const w = parseInt((new TextDecoder).decode(o.slice(0, i)).split("\r\n")[0].match(/HTTP\/\d\.\d\s+(\d+)/)[1]);
+                    if (w < 200 || w >= 300) throw Error();
+                    return f(n) > 0 && await u.write(n), u.releaseLock(), h.releaseLock(), l;
+                } catch (e) {
+                    try {
+                        u.releaseLock();
+                    } catch (e) {}
+                    try {
+                        h.releaseLock();
+                    } catch (e) {}
+                    try {
+                        l.close();
+                    } catch (e) {}
+                    throw e;
+                }
+            }(o, h, u); else {
+                const e = await async function(e, n = "dash.cloudflare.com", a = "00000000-0000-4000-8000-000000000000") {
+                    if (!t || !r || t !== e) {
+                        function s(e) {
+                            let t = e, r = 443;
+                            if (e.includes("]:")) {
+                                const n = e.split("]:");
+                                t = n[0] + "]", r = parseInt(n[1], 10) || r;
+                            } else if (e.includes(":") && !e.startsWith("[")) {
+                                const n = e.lastIndexOf(":");
+                                t = e.slice(0, n), r = parseInt(e.slice(n + 1), 10) || r;
+                            }
+                            return [ t, r ];
+                        }
+                        e = e.toLowerCase();
+                        const o = await async function(e) {
+                            var t = e.replace(/[	"'\r\n]+/g, ",").replace(/,+/g, ",");
+                            return "," == t.charAt(0) && (t = t.slice(1)), "," == t.charAt(t.length - 1) && (t = t.slice(0, t.length - 1)), 
+                            t.split(",");
+                        }(e);
+                        let i = [];
+                        for (const f of o) {
+                            let [h, w] = s(f);
+                            if (f.includes(".tp")) {
+                                const y = f.match(/\.tp(\d+)/);
+                                y && (w = parseInt(y[1], 10));
+                            }
+                            i.push([ h, w ]);
+                        }
+                        const c = i.sort((e, t) => e[0].localeCompare(t[0]));
+                        let l = [ ...(n.includes(".") ? n.split(".").slice(-2).join(".") : n) + a ].reduce((e, t) => e + t.charCodeAt(0), 0);
+                        const u = [ ...c ].sort(() => (l = 1103515245 * l + 12345 & 2147483647) / 2147483647 - .5);
+                        r = u.slice(0, 8), t = e;
+                    }
+                    return r;
+                }(n, o, L);
+                s = await U("ProxyIP.CMLiussss.net", 1, u, e, l);
+            }
+            c && (A = 1), g.s = s, s.closed.catch(() => {}).finally(() => p(y)), b(s, y, d, null);
+        })();
+        g.p = k;
+        try {
+            await k;
+        } finally {
+            g.p === k && (g.p = null);
+        }
+    }
+    if (g.r = async () => m(A ? 0 : 1), a && (s || (S = o, u.some(e => new RegExp(`^${e.replace(/\*/g, ".*")}$`, "i").test(S))))) try {
+        await m();
+    } catch (e) {
+        throw e;
+    } else try {
+        const e = await U(o, h, w);
+        g.s = e, b(e, y, d, async () => {
+            g.s === e && await m();
+        });
+    } catch (e) {
+        await m();
+    }
+    var S;
+}
+
+async function d(t, r, n) {
+    try {
+        const a = e({
+            hostname: "8.8.4.4",
+            port: 53
+        });
+        let s = n;
+        const o = a.writable.getWriter();
+        await o.write(t), o.releaseLock(), await a.readable.pipeTo(new WritableStream({
+            async write(e) {
+                if (r.readyState === WebSocket.OPEN) if (s) {
+                    const t = new Uint8Array(s.length + e.byteLength);
+                    t.set(s, 0), t.set(e, s.length), r.send(t.buffer), s = null;
+                } else r.send(e);
+            }
+        }));
+    } catch (e) {}
+}
+
+function p(e) {
+    try {
+        e.readyState > 0 && e.readyState < 3 && e.close();
+    } catch {}
+}
+
+function g(e, t = 0) {
+    const r = [ ...e.slice(t, t + 16) ].map(e => e.toString(16).padStart(2, "0")).join("");
+    return `${r.substring(0, 8)}-${r.substring(8, 12)}-${r.substring(12, 16)}-${r.substring(16, 20)}-${r.substring(20)}`;
+}
+
+async function b(e, t, r, n) {
+    let a = r, s = 0;
+    await e.readable.pipeTo(new WritableStream({
+        async write(e, r) {
+            if (s = 1, t.readyState !== WebSocket.OPEN && r.error("ws.readyState is not open"), 
+            a) {
+                const r = new Uint8Array(a.length + e.byteLength);
+                r.set(a, 0), r.set(e, a.length), t.send(r.buffer), a = null;
+            } else t.send(e);
+        }
+    })).catch(e => {
+        p(t);
+    }), !s && n && await n();
+}
+
+function L(e) {
+    return "speed.cloudflare.com" === e || e.endsWith(".speed.cloudflare.com");
+}
+
+async function A(e) {
+    const t = new URL(e.url), {searchParams: r} = t, c = decodeURIComponent(t.pathname), u = c.toLowerCase();
+    o = r.get("socks5") || r.get("http") || null, s = r.has("globalproxy") ? 1 : 0;
+    const f = (e, t = 1) => {
+        const r = /^(socks5|http):\/\/(.+)$/i.exec(e || "");
+        return r ? (a = r[1].toLowerCase(), o = r[2].split("/")[0], t && (s = 1), 1) : 0;
+    }, h = e => {
+        n = e, l = 0;
+    }, w = r.get("proxyip");
+    if (null !== w) {
+        if (!f(w)) return h(w);
+    } else {
+        let e = /\/(socks5?|http):\/?\/?([^/?#\s]+)/i.exec(c);
+        if (e) a = "http" === e[1].toLowerCase() ? "http" : "socks5", o = e[2].split("/")[0], 
+        s = 1; else if (e = /\/(g?s5|socks5|g?http)=([^/?#\s]+)/i.exec(c)) {
+            const t = e[1].toLowerCase();
+            o = e[2].split("/")[0], a = t.includes("http") ? "http" : "socks5", t.startsWith("g") && (s = 1);
+        } else if (e = /\/(proxyip[.=]|pyip=|ip=)([^?#\s]+)/.exec(u)) {
+            const t = (e => {
+                if (!e.includes("://")) {
+                    const t = e.indexOf("/");
+                    return t > 0 ? e.slice(0, t) : e;
+                }
+                const t = e.split("://");
+                if (2 !== t.length) return e;
+                const r = t[1].indexOf("/");
+                return r > 0 ? `${t[0]}://${t[1].slice(0, r)}` : e;
+            })(e[2]);
+            if (!f(t)) return h(t);
+        }
+    }
+    if (o) try {
+        i = await function(e) {
+            const t = e.lastIndexOf("@");
+            if (-1 !== t) {
+                let r = e.slice(0, t).replaceAll("%3D", "=");
+                !r.includes(":") && k.test(r) && (r = atob(r)), e = `${r}@${e.slice(t + 1)}`;
+            }
+            const r = e.lastIndexOf("@"), n = -1 === r ? e : e.slice(r + 1), a = -1 === r ? "" : e.slice(0, r), [s, o] = a ? a.split(":") : [];
+            if (a && !o) throw Error();
+            let i = n, c = 80;
+            if (n.includes("]:")) {
+                const [e, t = ""] = n.split("]:");
+                i = e + "]", c = Number(t.replace(/[^\d]/g, ""));
+            } else if (!n.startsWith("[")) {
+                const e = n.split(":");
+                2 === e.length && (i = e[0], c = Number(e[1].replace(/[^\d]/g, "")));
+            }
+            if (isNaN(c)) throw Error();
+            if (i.includes(":") && !U.test(i)) throw Error();
+            return {
+                username: s,
+                password: o,
+                hostname: i,
+                port: c
+            };
+        }(o), a = r.get("http") ? "http" : a || "socks5";
+    } catch (e) {
+        a = null;
+    } else a = null;
+}
+
+const k = /^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i, U = /^\[.*\]$/;
