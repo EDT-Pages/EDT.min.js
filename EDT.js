@@ -1,8 +1,7 @@
-const userID = "5ef08dba-8fdb-4a9b-8e9f-296620b23c80", Password = "4fc532c8ef4b5956332dae7630e201da792b90336aeab2537212db5b";
-
+const userID = "00000000-0000-4000-8000-000000000000", Password = "8da1399d0f9af7d3c60ca98c6fb067576d705ab325f37869d2b53ae8";
 let 丁, 丂, 七 = "", 丄 = null, 丅 = 0, 丆 = "", 万 = {}, 丈 = 0, 三 = 1, 上 = [ "*tapecontent.net", "*cloudatacdn.com", "*loadshare.org", "*cdn-centaurus.com", "scholar.google.com" ];
 export default {
-	async fetch(下, 丌, 不) {
+	async fetch(下) {
 		七 = 下.cf.colo + ".proxyIP.cmliuSSSS.NET";
 		const 与 = (下.headers.get("Upgrade") || "").toLowerCase(), 丏 = (下.headers.get("content-type") || "").toLowerCase();
 		if ("websocket" === 与) return await 使(下), await async function(丐, 丑) {
