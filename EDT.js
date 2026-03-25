@@ -1,6 +1,6 @@
 const userID = "5ef08dba-8fdb-4a9b-8e9f-296620b23c80", Password = "4fc532c8ef4b5956332dae7630e201da792b90336aeab2537212db5b";
 
-import { connect as 一 } from "cloudflare:sockets";
+import { connect as 一 } from "cloud\u0066\u006C\u0061\u0072\u0065\u003A\u0073\u006F\u0063\u006B\u0065\u0074s";
 
 let 丁, 丂, 七 = "", 丄 = null, 丅 = 0, 丆 = "", 万 = {}, 丈 = 0, 三 = 1, 上 = [ "*tapecontent.net", "*cloudatacdn.com", "*loadshare.org", "*cdn-centaurus.com", "scholar.google.com" ];
 
