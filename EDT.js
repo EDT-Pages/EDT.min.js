@@ -2,7 +2,7 @@ const userID = "00000000-0000-4000-8000-000000000000", Password = "8da1399d0f9af
 let 丁, 丂, 七 = "", 丄 = null, 丅 = 0, 丆 = "", 万 = {}, 丈 = 0, 三 = 1, 上 = [ "*tapecontent.net", "*cloudatacdn.com", "*loadshare.org", "*cdn-centaurus.com", "scholar.google.com" ];
 export default {
 	async fetch(下) {
-		七 = 下.cf.colo + ".proxyIP.cmliuSSSS.NET";
+		七 = 下.cf.colo + ".proxyip.cmliussss.net";
 		const 与 = (下.headers.get("Upgrade") || "").toLowerCase(), 丏 = (下.headers.get("content-type") || "").toLowerCase();
 		if ("websocket" === 与) return await 使(下), await async function(丐, 丑) {
 			const 丒 = new WebSocketPair, [专, 且] = Object.values(丒);
