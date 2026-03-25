@@ -1,9 +1,6 @@
 const userID = "5ef08dba-8fdb-4a9b-8e9f-296620b23c80", Password = "4fc532c8ef4b5956332dae7630e201da792b90336aeab2537212db5b";
 
-import { connect as 一 } from "cloudflare:sockets";
-
 let 丁, 丂, 七 = "", 丄 = null, 丅 = 0, 丆 = "", 万 = {}, 丈 = 0, 三 = 1, 上 = [ "*tapecontent.net", "*cloudatacdn.com", "*loadshare.org", "*cdn-centaurus.com", "scholar.google.com" ];
-
 export default {
 	async fetch(下, 丌, 不) {
 		七 = 下.cf.colo + ".proxyIP.cmliuSSSS.NET";
@@ -882,7 +879,7 @@ async function 佲(佳, 佴, 併, 佶) {
 function 佽(佾) {
 	return "speed.cloudflare.com" === 佾 || 佾.endsWith(".speed.cloudflare.com");
 }
-
+import { connect as 一 } from "cloudflare:sockets";
 async function 使(侀) {
 	const 侁 = new URL(侀.url), {searchParams: 侂} = 侁, 侃 = decodeURIComponent(侁.pathname), 侄 = 侃.toLowerCase();
 	丆 = 侂.get("socks5") || 侂.get("http") || null, 丅 = 侂.has("globalproxy") ? 1 : 0;
