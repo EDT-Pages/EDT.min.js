@@ -12,9 +12,9 @@ export default {
             const 丒 = new WebSocketPair, [专, 且] = Object.values(丒);
             且.accept(), 且.binaryType = "arraybuffer";
             let 丕 = {
-                s: null,
-                p: null,
-                r: null
+                侣: null,
+                侤: null,
+                侥: null
             }, 世 = 0;
             const 丗 = 丐.headers.get("sec-websocket-protocol") || "", 丘 = function(丙, 业) {
                 let 丛 = 0;
@@ -59,13 +59,13 @@ export default {
                 }
                 丧 = null;
             }, 丫 = async (丬, 中 = 1) => {
-                const 丮 = 丕.s;
+                const 丮 = 丕.侣;
                 if (!丮) return 0;
                 丮 !== 丧 && (丩(), 丧 = 丮, 丨 = 丮.writable.getWriter());
                 try {
                     return await 丨.write(丬), 1;
                 } catch (丯) {
-                    if (丩(), 中 && "function" == typeof 丕.r) return await 丕.r(), await 丫(丬, 0);
+                    if (丩(), 中 && "function" == typeof 丕.侥) return await 丕.侥(), await 丫(丬, 0);
                     throw 丯;
                 }
             };
@@ -79,14 +79,14 @@ export default {
                         }
                         if (!await 丫(丰)) if (並) {
                             const 串 = 仕(丰);
-                            if (串?.h) throw Error();
-                            const {port: 丳, hostname: 临, c: 丵} = 串;
+                            if (串?.侦) throw Error();
+                            const {port: 丳, hostname: 临, 侧: 丵} = 串;
                             if (佽(临)) throw Error();
                             await 仲(临, 丳, 丵, 且, null, 丕, 丑);
                         } else {
                             const 丶 = 仢(丰, 丑);
-                            if (丶?.h) throw Error();
-                            const {port: 丷, hostname: 丸, i: 丹, v: 为, u: 主} = 丶;
+                            if (丶?.侦) throw Error();
+                            const {port: 丷, hostname: 丸, 侨: 丹, 侩: 为, 侪: 主} = 丶;
                             if (佽(丸)) throw Error();
                             if (主) {
                                 if (53 !== 丷) throw Error();
@@ -122,46 +122,46 @@ export default {
                     const 乆 = new TextDecoder, 乇 = Password, 么 = (new TextEncoder).encode(乇), 义 = 乊 => {
                         const 之 = 乊.byteLength;
                         if (之 < 18) return {
-                            s: 0
+                            侣: 0
                         };
                         if (佭(乊.subarray(1, 17)) !== 久) return {
-                            s: 1
+                            侣: 1
                         };
                         const 乌 = 18 + 乊[17];
                         if (之 < 乌 + 1) return {
-                            s: 0
+                            侣: 0
                         };
                         const 乍 = 乊[乌];
                         if (1 !== 乍 && 2 !== 乍) return {
-                            s: 1
+                            侣: 1
                         };
                         const 乎 = 乌 + 1;
                         if (之 < 乎 + 3) return {
-                            s: 0
+                            侣: 0
                         };
                         const 乏 = 乊[乎] << 8 | 乊[乎 + 1], 乐 = 乊[乎 + 2], 乑 = 乎 + 3;
                         let 乒 = -1, 乓 = "";
                         if (1 === 乐) {
                             if (之 < 乑 + 4) return {
-                                s: 0
+                                侣: 0
                             };
                             乓 = `${乊[乑]}.${乊[乑 + 1]}.${乊[乑 + 2]}.${乊[乑 + 3]}`, 乒 = 乑 + 4;
                         } else if (2 === 乐) {
                             if (之 < 乑 + 1) return {
-                                s: 0
+                                侣: 0
                             };
                             const 乔 = 乊[乑];
                             if (之 < 乑 + 1 + 乔) return {
-                                s: 0
+                                侣: 0
                             };
                             乓 = 乆.decode(乊.subarray(乑 + 1, 乑 + 1 + 乔)), 乒 = 乑 + 1 + 乔;
                         } else {
                             if (3 !== 乐) return {
-                                s: 1
+                                侣: 1
                             };
                             {
                                 if (之 < 乑 + 16) return {
-                                    s: 0
+                                    侣: 0
                                 };
                                 const 乕 = [];
                                 for (let 乖 = 0; 乖 < 8; 乖++) {
@@ -172,58 +172,58 @@ export default {
                             }
                         }
                         return 乓 ? {
-                            s: 2,
-                            r: {
-                                p: "vless",
+                            侣: 2,
+                            侥: {
+                                侤: "vless",
                                 hostname: 乓,
                                 port: 乏,
-                                u: 2 === 乍,
-                                d: 乊.subarray(乒),
-                                r: new Uint8Array([ 乊[0], 0 ])
+                                侪: 2 === 乍,
+                                侫: 乊.subarray(乒),
+                                侥: new Uint8Array([ 乊[0], 0 ])
                             }
                         } : {
-                            s: 1
+                            侣: 1
                         };
                     }, 乘 = 乙 => {
                         const 乚 = 乙.byteLength;
                         if (乚 < 58) return {
-                            s: 0
+                            侣: 0
                         };
                         if (13 !== 乙[56] || 10 !== 乙[57]) return {
-                            s: 1
+                            侣: 1
                         };
                         for (let 乛 = 0; 乛 < 56; 乛++) if (乙[乛] !== 么[乛]) return {
-                            s: 1
+                            侣: 1
                         };
                         if (乚 < 60) return {
-                            s: 0
+                            侣: 0
                         };
                         if (1 !== 乙[58]) return {
-                            s: 1
+                            侣: 1
                         };
                         const 乜 = 乙[59];
                         let 九 = 60, 乞 = "";
                         if (1 === 乜) {
                             if (乚 < 九 + 4) return {
-                                s: 0
+                                侣: 0
                             };
                             乞 = `${乙[九]}.${乙[九 + 1]}.${乙[九 + 2]}.${乙[九 + 3]}`, 九 += 4;
                         } else if (3 === 乜) {
                             if (乚 < 九 + 1) return {
-                                s: 0
+                                侣: 0
                             };
                             const 也 = 乙[九];
                             if (乚 < 九 + 1 + 也) return {
-                                s: 0
+                                侣: 0
                             };
                             乞 = 乆.decode(乙.subarray(九 + 1, 九 + 1 + 也)), 九 += 1 + 也;
                         } else {
                             if (4 !== 乜) return {
-                                s: 1
+                                侣: 1
                             };
                             {
                                 if (乚 < 九 + 16) return {
-                                    s: 0
+                                    侣: 0
                                 };
                                 const 习 = [];
                                 for (let 乡 = 0; 乡 < 8; 乡++) {
@@ -234,21 +234,21 @@ export default {
                             }
                         }
                         return 乞 ? 乚 < 九 + 4 ? {
-                            s: 0
+                            侣: 0
                         } : 13 !== 乙[九 + 2] || 10 !== 乙[九 + 3] ? {
-                            s: 1
+                            侣: 1
                         } : {
-                            s: 2,
-                            r: {
-                                p: "trojan",
+                            侣: 2,
+                            侥: {
+                                侤: "trojan",
                                 hostname: 乞,
                                 port: 乙[九] << 8 | 乙[九 + 1],
-                                u: 0,
-                                d: 乙.subarray(九 + 4),
-                                r: null
+                                侪: 0,
+                                侫: 乙.subarray(九 + 4),
+                                侥: null
                             }
                         } : {
-                            s: 1
+                            侣: 1
                         };
                     };
                     let 乣 = new Uint8Array(1024), 乤 = 0;
@@ -265,24 +265,24 @@ export default {
                         }
                         乣.set(乧, 乤), 乤 += 乧.byteLength;
                         const 乩 = 乣.subarray(0, 乤), 乪 = 乘(乩);
-                        if (2 === 乪.s) return {
-                            ...乪.r,
+                        if (2 === 乪.侣) return {
+                            ...乪.侥,
                             reader: 乄
                         };
                         const 乫 = 义(乩);
-                        if (2 === 乫.s) return {
-                            ...乫.r,
+                        if (2 === 乫.侣) return {
+                            ...乫.侥,
                             reader: 乄
                         };
-                        if (1 === 乪.s && 1 === 乫.s) return null;
+                        if (1 === 乪.侣 && 1 === 乫.侣) return null;
                     }
                     const 乬 = 乣.subarray(0, 乤), 乭 = 乘(乬);
-                    if (2 === 乭.s) return {
-                        ...乭.r,
+                    if (2 === 乭.侣) return {
+                        ...乭.侥,
                         reader: 乄
                     };
                     const 乮 = 义(乬);
-                    return 2 === 乮.s && 乮.r;
+                    return 2 === 乮.侣 && 乮.侥;
                 }(乂, 乁);
                 if (!乃) {
                     try {
@@ -300,7 +300,7 @@ export default {
                         status: 403
                     });
                 }
-                if (乃.u && 53 !== 乃.port) {
+                if (乃.侪 && 53 !== 乃.port) {
                     try {
                         乂.releaseLock();
                     } catch (乱) {}
@@ -309,9 +309,9 @@ export default {
                     });
                 }
                 const 乲 = {
-                    s: null,
-                    p: null,
-                    r: null
+                    侣: null,
+                    侤: null,
+                    侥: null
                 };
                 let 乳 = null, 乴 = null;
                 const 乵 = new Headers({
@@ -327,12 +327,12 @@ export default {
                     }
                     乳 = null;
                 }, 乸 = () => {
-                    const 乹 = 乲.s;
+                    const 乹 = 乲.侣;
                     return 乹 ? (乹 !== 乳 && (乶(), 乳 = 乹, 乴 = 乹.writable.getWriter()), 乴) : null;
                 };
                 return new Response(new ReadableStream({
                     async start(乺) {
-                        let 乻 = 0, 乼 = 乃.r;
+                        let 乻 = 0, 乼 = 乃.侥;
                         const 乽 = {
                             readyState: WebSocket.OPEN,
                             send(乾) {
@@ -358,17 +358,17 @@ export default {
                             try {
                                 return await 亅.write(亃), 1;
                             } catch (了) {
-                                if (乶(), 亄 && "function" == typeof 乲.r) return await 乲.r(), await 亂(亃, 0);
+                                if (乶(), 亄 && "function" == typeof 乲.侥) return await 乲.侥(), await 亂(亃, 0);
                                 throw 了;
                             }
                         };
                         try {
-                            for (乃.u ? 乃.d?.byteLength && (await 佡(乃.d, 乽, 乼), 乼 = null) : await 仲(乃.hostname, 乃.port, 乃.d, 乽, 乃.r, 乲, 乁); ;) {
+                            for (乃.侪 ? 乃.侫?.byteLength && (await 佡(乃.侫, 乽, 乼), 乼 = null) : await 仲(乃.hostname, 乃.port, 乃.侫, 乽, 乃.侥, 乲, 乁); ;) {
                                 const {done: 亇, value: 予} = await 乂.read();
                                 if (亇) break;
-                                if (予 && 0 !== 予.byteLength) if (乃.u) await 佡(予, 乽, 乼), 乼 = null; else if (!await 亂(予)) throw Error();
+                                if (予 && 0 !== 予.byteLength) if (乃.侪) await 佡(予, 乽, 乼), 乼 = null; else if (!await 亂(予)) throw Error();
                             }
-                            if (!乃.u) {
+                            if (!乃.侪) {
                                 const 争 = 乸();
                                 if (争) try {
                                     await 争.close();
@@ -386,7 +386,7 @@ export default {
                     cancel() {
                         乶();
                         try {
-                            乲.s?.close();
+                            乲.侣?.close();
                         } catch (亍) {}
                         try {
                             乂.releaseLock();
@@ -401,9 +401,9 @@ export default {
                     status: 400
                 });
                 const 云 = 亏.body.getReader(), 互 = {
-                    s: null,
-                    p: null,
-                    r: null
+                    侣: null,
+                    侤: null,
+                    侥: null
                 };
                 let 亓 = 0, 五 = null, 井 = null, 亖 = null;
                 const 亗 = new Headers({
@@ -455,13 +455,13 @@ export default {
                             }
                             井 = null;
                         }, 亮 = async (亯, 亰 = 1) => {
-                            const 亱 = 互.s;
+                            const 亱 = 互.侣;
                             if (!亱) return 0;
                             亱 !== 井 && (京(), 井 = 亱, 亖 = 亱.writable.getWriter());
                             try {
                                 return await 亖.write(亯), 1;
                             } catch (亲) {
-                                if (京(), 亰 && "function" == typeof 互.r) return await 互.r(), await 亮(亯, 0);
+                                if (京(), 亰 && "function" == typeof 互.侥) return await 互.侥(), await 亮(亯, 0);
                                 throw 亲;
                             }
                         };
@@ -489,7 +489,7 @@ export default {
                                         }
                                         亽 && (人 = 人.slice(亼));
                                     }
-                                    if (人.byteLength) if (亓) await 佡(人, 亝, null); else if (互.s) {
+                                    if (人.byteLength) if (亓) await 佡(人, 亝, null); else if (互.侣) {
                                         if (!await 亮(人)) throw Error();
                                     } else {
                                         let 亾;
@@ -497,14 +497,14 @@ export default {
                                         const 亿 = new Uint8Array(亾);
                                         if (null === 五 && (五 = 亿.byteLength >= 58 && 13 === 亿[56] && 10 === 亿[57]), 五) {
                                             const 什 = 仕(亾);
-                                            if (什?.h) throw Error();
-                                            const {port: 仁, hostname: 仂, c: 仃} = 什;
+                                            if (什?.侦) throw Error();
+                                            const {port: 仁, hostname: 仂, 侧: 仃} = 什;
                                             if (佽(仂)) throw Error();
                                             await 仲(仂, 仁, 仃, 亝, null, 互, 亐);
                                         } else {
                                             const 仄 = 仢(亾, 亐);
-                                            if (仄?.h) throw Error();
-                                            const {port: 仅, hostname: 仆, i: 仇, v: 仈, u: 仉} = 仄;
+                                            if (仄?.侦) throw Error();
+                                            const {port: 仅, hostname: 仆, 侨: 仇, 侩: 仈, 侪: 仉} = 仄;
                                             if (佽(仆)) throw Error();
                                             if (仉) {
                                                 if (53 !== 仅) throw Error();
@@ -533,7 +533,7 @@ export default {
                                         云.releaseLock();
                                     } catch (从) {}
                                     try {
-                                        互.s?.close();
+                                        互.侣?.close();
                                     } catch (仏) {}
                                     try {
                                         亘.close();
@@ -544,7 +544,7 @@ export default {
                     },
                     cancel() {
                         try {
-                            互.s?.close();
+                            互.侣?.close();
                         } catch (仑) {}
                         try {
                             云.releaseLock();
@@ -567,21 +567,21 @@ function 仓(仔) {
 function 仕(他) {
     const 仗 = Password;
     if (他.byteLength < 56) return {
-        h: 1
+        侦: 1
     };
     if (13 !== new Uint8Array(他.slice(56, 57))[0] || 10 !== new Uint8Array(他.slice(57, 58))[0]) return {
-        h: 1
+        侦: 1
     };
     if ((new TextDecoder).decode(他.slice(0, 56)) !== 仗) return {
-        h: 1
+        侦: 1
     };
     const 付 = 他.slice(58);
     if (付.byteLength < 6) return {
-        h: 1
+        侦: 1
     };
     const 仙 = new DataView(付);
     if (1 !== 仙.getUint8(0)) return {
-        h: 1
+        侦: 1
     };
     let 仚 = 0, 仛 = 2, 仜 = "";
     switch (仙.getUint8(1)) {
@@ -602,34 +602,34 @@ function 仕(他) {
 
       default:
         return {
-            h: 1
+            侦: 1
         };
     }
     if (!仜) return {
-        h: 1
+        侦: 1
     };
     const 仠 = 仛 + 仚, 仡 = 付.slice(仠, 仠 + 2);
     return {
-        h: 0,
+        侦: 0,
         port: new DataView(仡).getUint16(0),
         hostname: 仜,
-        c: 付.slice(仠 + 4)
+        侧: 付.slice(仠 + 4)
     };
 }
 
 function 仢(代, 令) {
     if (代.byteLength < 24) return {
-        h: 1
+        侦: 1
     };
     const 以 = new Uint8Array(代.slice(0, 1));
     if (佭(new Uint8Array(代.slice(1, 17))) !== 令) return {
-        h: 1
+        侦: 1
     };
     const 仦 = new Uint8Array(代.slice(17, 18))[0], 仧 = new Uint8Array(代.slice(18 + 仦, 19 + 仦))[0];
     let 仨 = 0;
     if (1 !== 仧) {
         if (2 !== 仧) return {
-            h: 1
+            侦: 1
         };
         仨 = 1;
     }
@@ -653,18 +653,18 @@ function 仢(代, 令) {
 
       default:
         return {
-            h: 1
+            侦: 1
         };
     }
     return 仮 ? {
-        h: 0,
+        侦: 0,
         port: 仪,
         hostname: 仮,
-        u: 仨,
-        i: 仭 + 们,
-        v: 以
+        侪: 仨,
+        侨: 仭 + 们,
+        侩: 以
     } : {
-        h: 1
+        侦: 1
     };
 }
 
@@ -706,7 +706,7 @@ async function 仲(仳, 仴, 仵, 件, 价, 仸, 仹) {
         throw 佫(件), Error();
     }
     async function 伏(伐 = 1) {
-        if (仸.p) return void await 仸.p;
+        if (仸.侤) return void await 仸.侤;
         const 休 = 伐 && !仺 && 仓(仵) > 0, 伒 = 休 ? 仵 : null, 伓 = (async () => {
             let 伔;
             if ("socks5" === 丄) 伔 = await async function(伕, 伖, 众) {
@@ -810,23 +810,23 @@ async function 仲(仳, 仴, 仵, 件, 价, 仸, 仹) {
                 }(七, 仳, 仹);
                 伔 = await 伀("ProxyIP.CMLiussss.net", 1, 伒, 佃, 三);
             }
-            休 && (仺 = 1), 仸.s = 伔, 伔.closed.catch(() => {}).finally(() => 佫(件)), 佲(伔, 件, 价, null);
+            休 && (仺 = 1), 仸.侣 = 伔, 伔.closed.catch(() => {}).finally(() => 佫(件)), 佲(伔, 件, 价, null);
         })();
-        仸.p = 伓;
+        仸.侤 = 伓;
         try {
             await 伓;
         } finally {
-            仸.p === 伓 && (仸.p = null);
+            仸.侤 === 伓 && (仸.侤 = null);
         }
     }
-    if (仸.r = async () => 伏(仺 ? 0 : 1), 丄 && (丅 || (你 = 仳, 上.some(作 => new RegExp(`^${作.replace(/\*/g, ".*")}$`, "i").test(你))))) try {
+    if (仸.侥 = async () => 伏(仺 ? 0 : 1), 丄 && (丅 || (你 = 仳, 上.some(作 => new RegExp(`^${作.replace(/\*/g, ".*")}$`, "i").test(你))))) try {
         await 伏();
     } catch (佝) {
         throw 佝;
     } else try {
         const 佞 = await 伀(仳, 仴, 仵);
-        仸.s = 佞, 佲(佞, 件, 价, async () => {
-            仸.s === 佞 && await 伏();
+        仸.侣 = 佞, 佲(佞, 件, 价, async () => {
+            仸.侣 === 佞 && await 伏();
         });
     } catch (佟) {
         await 伏();
