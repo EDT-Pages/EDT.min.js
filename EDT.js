@@ -1,603 +1,603 @@
 const userID = "5ef08dba-8fdb-4a9b-8e9f-296620b23c80", Password = "4fc532c8ef4b5956332dae7630e201da792b90336aeab2537212db5b";
 
-import { connect as e } from "cloudflare:sockets";
+import { connect as 一 } from "cloudflare:sockets";
 
-let t, r, n = "", a = null, s = 0, o = "", i = {}, c = 0, l = 1, u = [ "*tapecontent.net", "*cloudatacdn.com", "*loadshare.org", "*cdn-centaurus.com", "scholar.google.com" ];
+let 丁, 丂, 七 = "", 丄 = null, 丅 = 0, 丆 = "", 万 = {}, 丈 = 0, 三 = 1, 上 = [ "*tapecontent.net", "*cloudatacdn.com", "*loadshare.org", "*cdn-centaurus.com", "scholar.google.com" ];
 
 export default {
-    async fetch(e, t, r) {
-        n = e.cf.colo + ".proxyIP.cmliuSSSS.NET";
-        const a = (e.headers.get("Upgrade") || "").toLowerCase(), s = (e.headers.get("content-type") || "").toLowerCase();
-        if ("websocket" === a) return await A(e), await async function(e, t) {
-            const r = new WebSocketPair, [n, a] = Object.values(r);
-            a.accept(), a.binaryType = "arraybuffer";
-            let s = {
+    async fetch(下, 丌, 不) {
+        七 = 下.cf.colo + ".proxyIP.cmliuSSSS.NET";
+        const 与 = (下.headers.get("Upgrade") || "").toLowerCase(), 丏 = (下.headers.get("content-type") || "").toLowerCase();
+        if ("websocket" === 与) return await 使(下), await async function(丐, 丑) {
+            const 丒 = new WebSocketPair, [专, 且] = Object.values(丒);
+            且.accept(), 且.binaryType = "arraybuffer";
+            let 丕 = {
                 s: null,
                 p: null,
                 r: null
-            }, o = 0;
-            const i = e.headers.get("sec-websocket-protocol") || "", c = function(e, t) {
-                let r = 0;
+            }, 世 = 0;
+            const 丗 = 丐.headers.get("sec-websocket-protocol") || "", 丘 = function(丙, 业) {
+                let 丛 = 0;
                 return new ReadableStream({
-                    start(n) {
-                        e.addEventListener("message", e => {
-                            r || n.enqueue(e.data);
-                        }), e.addEventListener("close", () => {
-                            r || (p(e), n.close());
-                        }), e.addEventListener("error", e => n.error(e));
-                        const {earlyData: a, error: s} = function(e) {
-                            if (!e) return {
+                    start(东) {
+                        丙.addEventListener("message", 丝 => {
+                            丛 || 东.enqueue(丝.data);
+                        }), 丙.addEventListener("close", () => {
+                            丛 || (佫(丙), 东.close());
+                        }), 丙.addEventListener("error", 丞 => 东.error(丞));
+                        const {earlyData: 丟, error: 丠} = function(両) {
+                            if (!両) return {
                                 error: null
                             };
                             try {
-                                const t = atob(e.replace(/-/g, "+").replace(/_/g, "/")), r = new Uint8Array(t.length);
-                                for (let e = 0; e < t.length; e++) r[e] = t.charCodeAt(e);
+                                const 丢 = atob(両.replace(/-/g, "+").replace(/_/g, "/")), 丣 = new Uint8Array(丢.length);
+                                for (let 两 = 0; 两 < 丢.length; 两++) 丣[两] = 丢.charCodeAt(两);
                                 return {
-                                    earlyData: r.buffer,
+                                    earlyData: 丣.buffer,
                                     error: null
                                 };
-                            } catch (e) {
+                            } catch (严) {
                                 return {
-                                    error: e
+                                    error: 严
                                 };
                             }
-                        }(t);
-                        s ? n.error(s) : a && n.enqueue(a);
+                        }(业);
+                        丠 ? 东.error(丠) : 丟 && 东.enqueue(丟);
                     },
                     cancel() {
-                        r = 1, p(e);
+                        丛 = 1, 佫(丙);
                     }
                 });
-            }(a, i);
-            let l = null, u = null, f = null;
-            const g = () => {
-                if (f) {
+            }(且, 丗);
+            let 並 = null, 丧 = null, 丨 = null;
+            const 丩 = () => {
+                if (丨) {
                     try {
-                        f.releaseLock();
-                    } catch (e) {}
-                    f = null;
+                        丨.releaseLock();
+                    } catch (个) {}
+                    丨 = null;
                 }
-                u = null;
-            }, b = async (e, t = 1) => {
-                const r = s.s;
-                if (!r) return 0;
-                r !== u && (g(), u = r, f = r.writable.getWriter());
+                丧 = null;
+            }, 丫 = async (丬, 中 = 1) => {
+                const 丮 = 丕.s;
+                if (!丮) return 0;
+                丮 !== 丧 && (丩(), 丧 = 丮, 丨 = 丮.writable.getWriter());
                 try {
-                    return await f.write(e), 1;
-                } catch (r) {
-                    if (g(), t && "function" == typeof s.r) return await s.r(), await b(e, 0);
-                    throw r;
+                    return await 丨.write(丬), 1;
+                } catch (丯) {
+                    if (丩(), 中 && "function" == typeof 丕.r) return await 丕.r(), await 丫(丬, 0);
+                    throw 丯;
                 }
             };
-            return c.pipeTo(new WritableStream({
-                async write(e) {
-                    if (o) return await d(e, a, null);
-                    if (!await b(e)) {
-                        if (null === l) {
-                            const t = new Uint8Array(e);
-                            l = t.byteLength >= 58 && 13 === t[56] && 10 === t[57];
+            return 丘.pipeTo(new WritableStream({
+                async write(丰) {
+                    if (世) return await 佡(丰, 且, null);
+                    if (!await 丫(丰)) {
+                        if (null === 並) {
+                            const 丱 = new Uint8Array(丰);
+                            並 = 丱.byteLength >= 58 && 13 === 丱[56] && 10 === 丱[57];
                         }
-                        if (!await b(e)) if (l) {
-                            const r = h(e);
-                            if (r?.h) throw Error();
-                            const {port: n, hostname: o, c: i} = r;
-                            if (L(o)) throw Error();
-                            await y(o, n, i, a, null, s, t);
+                        if (!await 丫(丰)) if (並) {
+                            const 串 = 仕(丰);
+                            if (串?.h) throw Error();
+                            const {port: 丳, hostname: 临, c: 丵} = 串;
+                            if (佽(临)) throw Error();
+                            await 仲(临, 丳, 丵, 且, null, 丕, 丑);
                         } else {
-                            const r = w(e, t);
-                            if (r?.h) throw Error();
-                            const {port: n, hostname: i, i: c, v: l, u: u} = r;
-                            if (L(i)) throw Error();
-                            if (u) {
-                                if (53 !== n) throw Error();
-                                o = 1;
+                            const 丶 = 仢(丰, 丑);
+                            if (丶?.h) throw Error();
+                            const {port: 丷, hostname: 丸, i: 丹, v: 为, u: 主} = 丶;
+                            if (佽(丸)) throw Error();
+                            if (主) {
+                                if (53 !== 丷) throw Error();
+                                世 = 1;
                             }
-                            const f = new Uint8Array([ l[0], 0 ]), h = e.slice(c);
-                            if (o) return d(h, a, f);
-                            await y(i, n, h, a, f, s, t);
+                            const 丼 = new Uint8Array([ 为[0], 0 ]), 丽 = 丰.slice(丹);
+                            if (世) return 佡(丽, 且, 丼);
+                            await 仲(丸, 丷, 丽, 且, 丼, 丕, 丑);
                         }
                     }
                 },
                 close() {
-                    g();
+                    丩();
                 },
                 abort() {
-                    g();
+                    丩();
                 }
-            })).catch(e => {
-                g();
+            })).catch(举 => {
+                丩();
             }), new Response(null, {
                 status: 101,
-                webSocket: n
+                webSocket: 专
             });
-        }(e, userID);
-        if ("POST" === e.method) {
-            await A(e);
-            const t = e.headers.get("Referer") || "";
-            return t.includes("x_padding", 14) || t.includes("x_padding=") || !s.startsWith("application/grpc") ? await async function(e, t) {
-                if (!e.body) return new Response("Bad Request", {
+        }(下, userID);
+        if ("POST" === 下.method) {
+            await 使(下);
+            const 丿 = 下.headers.get("Referer") || "";
+            return 丿.includes("x_padding", 14) || 丿.includes("x_padding=") || !丏.startsWith("application/grpc") ? await async function(乀, 乁) {
+                if (!乀.body) return new Response("Bad Request", {
                     status: 400
                 });
-                const r = e.body.getReader(), n = await async function(e, t) {
-                    const r = new TextDecoder, n = Password, a = (new TextEncoder).encode(n), s = e => {
-                        const n = e.byteLength;
-                        if (n < 18) return {
+                const 乂 = 乀.body.getReader(), 乃 = await async function(乄, 久) {
+                    const 乆 = new TextDecoder, 乇 = Password, 么 = (new TextEncoder).encode(乇), 义 = 乊 => {
+                        const 之 = 乊.byteLength;
+                        if (之 < 18) return {
                             s: 0
                         };
-                        if (g(e.subarray(1, 17)) !== t) return {
+                        if (佭(乊.subarray(1, 17)) !== 久) return {
                             s: 1
                         };
-                        const a = 18 + e[17];
-                        if (n < a + 1) return {
+                        const 乌 = 18 + 乊[17];
+                        if (之 < 乌 + 1) return {
                             s: 0
                         };
-                        const s = e[a];
-                        if (1 !== s && 2 !== s) return {
+                        const 乍 = 乊[乌];
+                        if (1 !== 乍 && 2 !== 乍) return {
                             s: 1
                         };
-                        const o = a + 1;
-                        if (n < o + 3) return {
+                        const 乎 = 乌 + 1;
+                        if (之 < 乎 + 3) return {
                             s: 0
                         };
-                        const i = e[o] << 8 | e[o + 1], c = e[o + 2], l = o + 3;
-                        let u = -1, f = "";
-                        if (1 === c) {
-                            if (n < l + 4) return {
+                        const 乏 = 乊[乎] << 8 | 乊[乎 + 1], 乐 = 乊[乎 + 2], 乑 = 乎 + 3;
+                        let 乒 = -1, 乓 = "";
+                        if (1 === 乐) {
+                            if (之 < 乑 + 4) return {
                                 s: 0
                             };
-                            f = `${e[l]}.${e[l + 1]}.${e[l + 2]}.${e[l + 3]}`, u = l + 4;
-                        } else if (2 === c) {
-                            if (n < l + 1) return {
+                            乓 = `${乊[乑]}.${乊[乑 + 1]}.${乊[乑 + 2]}.${乊[乑 + 3]}`, 乒 = 乑 + 4;
+                        } else if (2 === 乐) {
+                            if (之 < 乑 + 1) return {
                                 s: 0
                             };
-                            const t = e[l];
-                            if (n < l + 1 + t) return {
+                            const 乔 = 乊[乑];
+                            if (之 < 乑 + 1 + 乔) return {
                                 s: 0
                             };
-                            f = r.decode(e.subarray(l + 1, l + 1 + t)), u = l + 1 + t;
+                            乓 = 乆.decode(乊.subarray(乑 + 1, 乑 + 1 + 乔)), 乒 = 乑 + 1 + 乔;
                         } else {
-                            if (3 !== c) return {
+                            if (3 !== 乐) return {
                                 s: 1
                             };
                             {
-                                if (n < l + 16) return {
+                                if (之 < 乑 + 16) return {
                                     s: 0
                                 };
-                                const t = [];
-                                for (let r = 0; r < 8; r++) {
-                                    const n = l + 2 * r;
-                                    t.push((e[n] << 8 | e[n + 1]).toString(16));
+                                const 乕 = [];
+                                for (let 乖 = 0; 乖 < 8; 乖++) {
+                                    const 乗 = 乑 + 2 * 乖;
+                                    乕.push((乊[乗] << 8 | 乊[乗 + 1]).toString(16));
                                 }
-                                f = t.join(":"), u = l + 16;
+                                乓 = 乕.join(":"), 乒 = 乑 + 16;
                             }
                         }
-                        return f ? {
+                        return 乓 ? {
                             s: 2,
                             r: {
                                 p: "vless",
-                                hostname: f,
-                                port: i,
-                                u: 2 === s,
-                                d: e.subarray(u),
-                                r: new Uint8Array([ e[0], 0 ])
+                                hostname: 乓,
+                                port: 乏,
+                                u: 2 === 乍,
+                                d: 乊.subarray(乒),
+                                r: new Uint8Array([ 乊[0], 0 ])
                             }
                         } : {
                             s: 1
                         };
-                    }, o = e => {
-                        const t = e.byteLength;
-                        if (t < 58) return {
+                    }, 乘 = 乙 => {
+                        const 乚 = 乙.byteLength;
+                        if (乚 < 58) return {
                             s: 0
                         };
-                        if (13 !== e[56] || 10 !== e[57]) return {
+                        if (13 !== 乙[56] || 10 !== 乙[57]) return {
                             s: 1
                         };
-                        for (let t = 0; t < 56; t++) if (e[t] !== a[t]) return {
+                        for (let 乛 = 0; 乛 < 56; 乛++) if (乙[乛] !== 么[乛]) return {
                             s: 1
                         };
-                        if (t < 60) return {
+                        if (乚 < 60) return {
                             s: 0
                         };
-                        if (1 !== e[58]) return {
+                        if (1 !== 乙[58]) return {
                             s: 1
                         };
-                        const n = e[59];
-                        let s = 60, o = "";
-                        if (1 === n) {
-                            if (t < s + 4) return {
+                        const 乜 = 乙[59];
+                        let 九 = 60, 乞 = "";
+                        if (1 === 乜) {
+                            if (乚 < 九 + 4) return {
                                 s: 0
                             };
-                            o = `${e[s]}.${e[s + 1]}.${e[s + 2]}.${e[s + 3]}`, s += 4;
-                        } else if (3 === n) {
-                            if (t < s + 1) return {
+                            乞 = `${乙[九]}.${乙[九 + 1]}.${乙[九 + 2]}.${乙[九 + 3]}`, 九 += 4;
+                        } else if (3 === 乜) {
+                            if (乚 < 九 + 1) return {
                                 s: 0
                             };
-                            const n = e[s];
-                            if (t < s + 1 + n) return {
+                            const 也 = 乙[九];
+                            if (乚 < 九 + 1 + 也) return {
                                 s: 0
                             };
-                            o = r.decode(e.subarray(s + 1, s + 1 + n)), s += 1 + n;
+                            乞 = 乆.decode(乙.subarray(九 + 1, 九 + 1 + 也)), 九 += 1 + 也;
                         } else {
-                            if (4 !== n) return {
+                            if (4 !== 乜) return {
                                 s: 1
                             };
                             {
-                                if (t < s + 16) return {
+                                if (乚 < 九 + 16) return {
                                     s: 0
                                 };
-                                const r = [];
-                                for (let t = 0; t < 8; t++) {
-                                    const n = s + 2 * t;
-                                    r.push((e[n] << 8 | e[n + 1]).toString(16));
+                                const 习 = [];
+                                for (let 乡 = 0; 乡 < 8; 乡++) {
+                                    const 乢 = 九 + 2 * 乡;
+                                    习.push((乙[乢] << 8 | 乙[乢 + 1]).toString(16));
                                 }
-                                o = r.join(":"), s += 16;
+                                乞 = 习.join(":"), 九 += 16;
                             }
                         }
-                        return o ? t < s + 4 ? {
+                        return 乞 ? 乚 < 九 + 4 ? {
                             s: 0
-                        } : 13 !== e[s + 2] || 10 !== e[s + 3] ? {
+                        } : 13 !== 乙[九 + 2] || 10 !== 乙[九 + 3] ? {
                             s: 1
                         } : {
                             s: 2,
                             r: {
                                 p: "trojan",
-                                hostname: o,
-                                port: e[s] << 8 | e[s + 1],
+                                hostname: 乞,
+                                port: 乙[九] << 8 | 乙[九 + 1],
                                 u: 0,
-                                d: e.subarray(s + 4),
+                                d: 乙.subarray(九 + 4),
                                 r: null
                             }
                         } : {
                             s: 1
                         };
                     };
-                    let i = new Uint8Array(1024), c = 0;
+                    let 乣 = new Uint8Array(1024), 乤 = 0;
                     for (;;) {
-                        const {value: t, done: r} = await e.read();
-                        if (r) {
-                            if (0 === c) return null;
+                        const {value: 乥, done: 书} = await 乄.read();
+                        if (书) {
+                            if (0 === 乤) return null;
                             break;
                         }
-                        const n = t instanceof Uint8Array ? t : new Uint8Array(t);
-                        if (c + n.byteLength > i.byteLength) {
-                            const e = new Uint8Array(Math.max(2 * i.byteLength, c + n.byteLength));
-                            e.set(i.subarray(0, c)), i = e;
+                        const 乧 = 乥 instanceof Uint8Array ? 乥 : new Uint8Array(乥);
+                        if (乤 + 乧.byteLength > 乣.byteLength) {
+                            const 乨 = new Uint8Array(Math.max(2 * 乣.byteLength, 乤 + 乧.byteLength));
+                            乨.set(乣.subarray(0, 乤)), 乣 = 乨;
                         }
-                        i.set(n, c), c += n.byteLength;
-                        const a = i.subarray(0, c), l = o(a);
-                        if (2 === l.s) return {
-                            ...l.r,
-                            reader: e
+                        乣.set(乧, 乤), 乤 += 乧.byteLength;
+                        const 乩 = 乣.subarray(0, 乤), 乪 = 乘(乩);
+                        if (2 === 乪.s) return {
+                            ...乪.r,
+                            reader: 乄
                         };
-                        const u = s(a);
-                        if (2 === u.s) return {
-                            ...u.r,
-                            reader: e
+                        const 乫 = 义(乩);
+                        if (2 === 乫.s) return {
+                            ...乫.r,
+                            reader: 乄
                         };
-                        if (1 === l.s && 1 === u.s) return null;
+                        if (1 === 乪.s && 1 === 乫.s) return null;
                     }
-                    const l = i.subarray(0, c), u = o(l);
-                    if (2 === u.s) return {
-                        ...u.r,
-                        reader: e
+                    const 乬 = 乣.subarray(0, 乤), 乭 = 乘(乬);
+                    if (2 === 乭.s) return {
+                        ...乭.r,
+                        reader: 乄
                     };
-                    const f = s(l);
-                    return 2 === f.s && f.r;
-                }(r, t);
-                if (!n) {
+                    const 乮 = 义(乬);
+                    return 2 === 乮.s && 乮.r;
+                }(乂, 乁);
+                if (!乃) {
                     try {
-                        r.releaseLock();
-                    } catch (e) {}
+                        乂.releaseLock();
+                    } catch (乯) {}
                     return new Response("Invalid request", {
                         status: 400
                     });
                 }
-                if (L(n.hostname)) {
+                if (佽(乃.hostname)) {
                     try {
-                        r.releaseLock();
-                    } catch (e) {}
+                        乂.releaseLock();
+                    } catch (买) {}
                     return new Response("Forbidden", {
                         status: 403
                     });
                 }
-                if (n.u && 53 !== n.port) {
+                if (乃.u && 53 !== 乃.port) {
                     try {
-                        r.releaseLock();
-                    } catch (e) {}
+                        乂.releaseLock();
+                    } catch (乱) {}
                     return new Response("UDP is not supported", {
                         status: 400
                     });
                 }
-                const a = {
+                const 乲 = {
                     s: null,
                     p: null,
                     r: null
                 };
-                let s = null, o = null;
-                const i = new Headers({
+                let 乳 = null, 乴 = null;
+                const 乵 = new Headers({
                     "Content-Type": "application/octet-stream",
                     "X-Accel-Buffering": "no",
                     "Cache-Control": "no-store"
-                }), c = () => {
-                    if (o) {
+                }), 乶 = () => {
+                    if (乴) {
                         try {
-                            o.releaseLock();
-                        } catch (e) {}
-                        o = null;
+                            乴.releaseLock();
+                        } catch (乷) {}
+                        乴 = null;
                     }
-                    s = null;
-                }, l = () => {
-                    const e = a.s;
-                    return e ? (e !== s && (c(), s = e, o = e.writable.getWriter()), o) : null;
+                    乳 = null;
+                }, 乸 = () => {
+                    const 乹 = 乲.s;
+                    return 乹 ? (乹 !== 乳 && (乶(), 乳 = 乹, 乴 = 乹.writable.getWriter()), 乴) : null;
                 };
                 return new Response(new ReadableStream({
-                    async start(e) {
-                        let s = 0, o = n.r;
-                        const i = {
+                    async start(乺) {
+                        let 乻 = 0, 乼 = 乃.r;
+                        const 乽 = {
                             readyState: WebSocket.OPEN,
-                            send(t) {
-                                if (!s) try {
-                                    e.enqueue(function(e) {
-                                        return e instanceof Uint8Array ? e : e instanceof ArrayBuffer ? new Uint8Array(e) : ArrayBuffer.isView(e) ? new Uint8Array(e.buffer, e.byteOffset, e.byteLength) : new Uint8Array(e);
-                                    }(t));
-                                } catch (e) {
-                                    s = 1, this.readyState = WebSocket.CLOSED;
+                            send(乾) {
+                                if (!乻) try {
+                                    乺.enqueue(function(乿) {
+                                        return 乿 instanceof Uint8Array ? 乿 : 乿 instanceof ArrayBuffer ? new Uint8Array(乿) : ArrayBuffer.isView(乿) ? new Uint8Array(乿.buffer, 乿.byteOffset, 乿.byteLength) : new Uint8Array(乿);
+                                    }(乾));
+                                } catch (亀) {
+                                    乻 = 1, this.readyState = WebSocket.CLOSED;
                                 }
                             },
                             close() {
-                                if (!s) {
-                                    s = 1, this.readyState = WebSocket.CLOSED;
+                                if (!乻) {
+                                    乻 = 1, this.readyState = WebSocket.CLOSED;
                                     try {
-                                        e.close();
-                                    } catch (e) {}
+                                        乺.close();
+                                    } catch (亁) {}
                                 }
                             }
-                        }, u = async (e, t = 1) => {
-                            const r = l();
-                            if (!r) return 0;
+                        }, 亂 = async (亃, 亄 = 1) => {
+                            const 亅 = 乸();
+                            if (!亅) return 0;
                             try {
-                                return await r.write(e), 1;
-                            } catch (r) {
-                                if (c(), t && "function" == typeof a.r) return await a.r(), await u(e, 0);
-                                throw r;
+                                return await 亅.write(亃), 1;
+                            } catch (了) {
+                                if (乶(), 亄 && "function" == typeof 乲.r) return await 乲.r(), await 亂(亃, 0);
+                                throw 了;
                             }
                         };
                         try {
-                            for (n.u ? n.d?.byteLength && (await d(n.d, i, o), o = null) : await y(n.hostname, n.port, n.d, i, n.r, a, t); ;) {
-                                const {done: e, value: t} = await r.read();
-                                if (e) break;
-                                if (t && 0 !== t.byteLength) if (n.u) await d(t, i, o), o = null; else if (!await u(t)) throw Error();
+                            for (乃.u ? 乃.d?.byteLength && (await 佡(乃.d, 乽, 乼), 乼 = null) : await 仲(乃.hostname, 乃.port, 乃.d, 乽, 乃.r, 乲, 乁); ;) {
+                                const {done: 亇, value: 予} = await 乂.read();
+                                if (亇) break;
+                                if (予 && 0 !== 予.byteLength) if (乃.u) await 佡(予, 乽, 乼), 乼 = null; else if (!await 亂(予)) throw Error();
                             }
-                            if (!n.u) {
-                                const t = l();
-                                if (t) try {
-                                    await t.close();
-                                } catch (e) {}
+                            if (!乃.u) {
+                                const 争 = 乸();
+                                if (争) try {
+                                    await 争.close();
+                                } catch (亊) {}
                             }
-                        } catch (e) {
-                            p(i);
+                        } catch (事) {
+                            佫(乽);
                         } finally {
-                            c();
+                            乶();
                             try {
-                                r.releaseLock();
-                            } catch (e) {}
+                                乂.releaseLock();
+                            } catch (二) {}
                         }
                     },
                     cancel() {
-                        c();
+                        乶();
                         try {
-                            a.s?.close();
-                        } catch (e) {}
+                            乲.s?.close();
+                        } catch (亍) {}
                         try {
-                            r.releaseLock();
-                        } catch (e) {}
+                            乂.releaseLock();
+                        } catch (于) {}
                     }
                 }), {
                     status: 200,
-                    headers: i
+                    headers: 乵
                 });
-            }(e, userID) : await async function(e, t) {
-                if (!e.body) return new Response("Bad Request", {
+            }(下, userID) : await async function(亏, 亐) {
+                if (!亏.body) return new Response("Bad Request", {
                     status: 400
                 });
-                const r = e.body.getReader(), n = {
+                const 云 = 亏.body.getReader(), 互 = {
                     s: null,
                     p: null,
                     r: null
                 };
-                let a = 0, s = null, o = null, i = null;
-                const c = new Headers({
+                let 亓 = 0, 五 = null, 井 = null, 亖 = null;
+                const 亗 = new Headers({
                     "Content-Type": "application/grpc",
                     "grpc-status": "0",
                     "X-Accel-Buffering": "no",
                     "Cache-Control": "no-store"
                 });
                 return new Response(new ReadableStream({
-                    async start(e) {
-                        let c = 0, l = [], u = 0, f = null;
-                        const p = {
+                    async start(亘) {
+                        let 亙 = 0, 亚 = [], 些 = 0, 亜 = null;
+                        const 亝 = {
                             readyState: WebSocket.OPEN,
-                            send(e) {
-                                if (c) return;
-                                const t = e instanceof Uint8Array ? e : new Uint8Array(e), r = [];
-                                let n = t.byteLength >>> 0;
-                                for (;n > 127; ) r.push(127 & n | 128), n >>>= 7;
-                                r.push(n);
-                                const a = new Uint8Array(r), s = 1 + a.length + t.byteLength, o = new Uint8Array(5 + s);
-                                o[0] = 0, o[1] = s >>> 24 & 255, o[2] = s >>> 16 & 255, o[3] = s >>> 8 & 255, o[4] = 255 & s, 
-                                o[5] = 10, o.set(a, 6), o.set(t, 6 + a.length), l.push(o), u += o.byteLength, u >= 65536 ? g() : f || (f = setTimeout(g, 20));
+                            send(亞) {
+                                if (亙) return;
+                                const 亟 = 亞 instanceof Uint8Array ? 亞 : new Uint8Array(亞), 亠 = [];
+                                let 亡 = 亟.byteLength >>> 0;
+                                for (;亡 > 127; ) 亠.push(127 & 亡 | 128), 亡 >>>= 7;
+                                亠.push(亡);
+                                const 亢 = new Uint8Array(亠), 亣 = 1 + 亢.length + 亟.byteLength, 交 = new Uint8Array(5 + 亣);
+                                交[0] = 0, 交[1] = 亣 >>> 24 & 255, 交[2] = 亣 >>> 16 & 255, 交[3] = 亣 >>> 8 & 255, 交[4] = 255 & 亣, 
+                                交[5] = 10, 交.set(亢, 6), 交.set(亟, 6 + 亢.length), 亚.push(交), 些 += 交.byteLength, 些 >= 65536 ? 亦() : 亜 || (亜 = setTimeout(亦, 20));
                             },
                             close() {
                                 if (this.readyState !== WebSocket.CLOSED) {
-                                    g(1), c = 1, this.readyState = WebSocket.CLOSED;
+                                    亦(1), 亙 = 1, this.readyState = WebSocket.CLOSED;
                                     try {
-                                        e.close();
-                                    } catch (e) {}
+                                        亘.close();
+                                    } catch (亥) {}
                                 }
                             }
-                        }, g = (t = 0) => {
-                            if (f && (clearTimeout(f), f = null), !t && c || 0 === u) return;
-                            const r = new Uint8Array(u);
-                            let n = 0;
-                            for (const e of l) r.set(e, n), n += e.byteLength;
-                            l = [], u = 0;
+                        }, 亦 = (产 = 0) => {
+                            if (亜 && (clearTimeout(亜), 亜 = null), !产 && 亙 || 0 === 些) return;
+                            const 亨 = new Uint8Array(些);
+                            let 亩 = 0;
+                            for (const 亪 of 亚) 亨.set(亪, 亩), 亩 += 亪.byteLength;
+                            亚 = [], 些 = 0;
                             try {
-                                e.enqueue(r);
-                            } catch (e) {
-                                c = 1, p.readyState = WebSocket.CLOSED;
+                                亘.enqueue(亨);
+                            } catch (享) {
+                                亙 = 1, 亝.readyState = WebSocket.CLOSED;
                             }
-                        }, b = () => {
-                            if (i) {
+                        }, 京 = () => {
+                            if (亖) {
                                 try {
-                                    i.releaseLock();
-                                } catch (e) {}
-                                i = null;
+                                    亖.releaseLock();
+                                } catch (亭) {}
+                                亖 = null;
                             }
-                            o = null;
-                        }, A = async (e, t = 1) => {
-                            const r = n.s;
-                            if (!r) return 0;
-                            r !== o && (b(), o = r, i = r.writable.getWriter());
+                            井 = null;
+                        }, 亮 = async (亯, 亰 = 1) => {
+                            const 亱 = 互.s;
+                            if (!亱) return 0;
+                            亱 !== 井 && (京(), 井 = 亱, 亖 = 亱.writable.getWriter());
                             try {
-                                return await i.write(e), 1;
-                            } catch (r) {
-                                if (b(), t && "function" == typeof n.r) return await n.r(), await A(e, 0);
-                                throw r;
+                                return await 亖.write(亯), 1;
+                            } catch (亲) {
+                                if (京(), 亰 && "function" == typeof 互.r) return await 互.r(), await 亮(亯, 0);
+                                throw 亲;
                             }
                         };
                         try {
-                            let e = new Uint8Array(0);
+                            let 亳 = new Uint8Array(0);
                             for (;;) {
-                                const {done: o, value: i} = await r.read();
-                                if (o) break;
-                                if (!i || 0 === i.byteLength) continue;
-                                const c = i instanceof Uint8Array ? i : new Uint8Array(i), l = new Uint8Array(e.length + c.length);
-                                for (l.set(e, 0), l.set(c, e.length), e = l; e.byteLength >= 5; ) {
-                                    const r = 5 + (e[1] << 24 >>> 0 | e[2] << 16 | e[3] << 8 | e[4]);
-                                    if (e.byteLength < r) break;
-                                    const o = e.slice(5, r);
-                                    if (e = e.slice(r), !o.byteLength) continue;
-                                    let i = o;
-                                    if (i.byteLength >= 2 && 10 === i[0]) {
-                                        let e = 0, t = 1, r = 0;
-                                        for (;t < i.length; ) {
-                                            if (!(128 & i[t++])) {
-                                                r = 1;
+                                const {done: 亴, value: 亵} = await 云.read();
+                                if (亴) break;
+                                if (!亵 || 0 === 亵.byteLength) continue;
+                                const 亶 = 亵 instanceof Uint8Array ? 亵 : new Uint8Array(亵), 亷 = new Uint8Array(亳.length + 亶.length);
+                                for (亷.set(亳, 0), 亷.set(亶, 亳.length), 亳 = 亷; 亳.byteLength >= 5; ) {
+                                    const 亸 = 5 + (亳[1] << 24 >>> 0 | 亳[2] << 16 | 亳[3] << 8 | 亳[4]);
+                                    if (亳.byteLength < 亸) break;
+                                    const 亹 = 亳.slice(5, 亸);
+                                    if (亳 = 亳.slice(亸), !亹.byteLength) continue;
+                                    let 人 = 亹;
+                                    if (人.byteLength >= 2 && 10 === 人[0]) {
+                                        let 亻 = 0, 亼 = 1, 亽 = 0;
+                                        for (;亼 < 人.length; ) {
+                                            if (!(128 & 人[亼++])) {
+                                                亽 = 1;
                                                 break;
                                             }
-                                            if (e += 7, e > 35) break;
+                                            if (亻 += 7, 亻 > 35) break;
                                         }
-                                        r && (i = i.slice(t));
+                                        亽 && (人 = 人.slice(亼));
                                     }
-                                    if (i.byteLength) if (a) await d(i, p, null); else if (n.s) {
-                                        if (!await A(i)) throw Error();
+                                    if (人.byteLength) if (亓) await 佡(人, 亝, null); else if (互.s) {
+                                        if (!await 亮(人)) throw Error();
                                     } else {
-                                        let e;
-                                        e = i instanceof ArrayBuffer ? i : ArrayBuffer.isView(i) ? i.buffer.slice(i.byteOffset, i.byteOffset + i.byteLength) : new Uint8Array(i).buffer;
-                                        const r = new Uint8Array(e);
-                                        if (null === s && (s = r.byteLength >= 58 && 13 === r[56] && 10 === r[57]), s) {
-                                            const r = h(e);
-                                            if (r?.h) throw Error();
-                                            const {port: a, hostname: s, c: o} = r;
-                                            if (L(s)) throw Error();
-                                            await y(s, a, o, p, null, n, t);
+                                        let 亾;
+                                        亾 = 人 instanceof ArrayBuffer ? 人 : ArrayBuffer.isView(人) ? 人.buffer.slice(人.byteOffset, 人.byteOffset + 人.byteLength) : new Uint8Array(人).buffer;
+                                        const 亿 = new Uint8Array(亾);
+                                        if (null === 五 && (五 = 亿.byteLength >= 58 && 13 === 亿[56] && 10 === 亿[57]), 五) {
+                                            const 什 = 仕(亾);
+                                            if (什?.h) throw Error();
+                                            const {port: 仁, hostname: 仂, c: 仃} = 什;
+                                            if (佽(仂)) throw Error();
+                                            await 仲(仂, 仁, 仃, 亝, null, 互, 亐);
                                         } else {
-                                            const r = w(e, t);
-                                            if (r?.h) throw Error();
-                                            const {port: s, hostname: o, i: i, v: c, u: l} = r;
-                                            if (L(o)) throw Error();
-                                            if (l) {
-                                                if (53 !== s) throw Error();
-                                                a = 1;
+                                            const 仄 = 仢(亾, 亐);
+                                            if (仄?.h) throw Error();
+                                            const {port: 仅, hostname: 仆, i: 仇, v: 仈, u: 仉} = 仄;
+                                            if (佽(仆)) throw Error();
+                                            if (仉) {
+                                                if (53 !== 仅) throw Error();
+                                                亓 = 1;
                                             }
-                                            const u = new Uint8Array([ c[0], 0 ]);
-                                            p.send(u);
-                                            const f = e.slice(i);
-                                            a ? await d(f, p, null) : await y(o, s, f, p, null, n, t);
+                                            const 今 = new Uint8Array([ 仈[0], 0 ]);
+                                            亝.send(今);
+                                            const 介 = 亾.slice(仇);
+                                            亓 ? await 佡(介, 亝, null) : await 仲(仆, 仅, 介, 亝, null, 互, 亐);
                                         }
                                     }
                                 }
-                                g();
+                                亦();
                             }
-                        } catch (e) {} finally {
-                            b(), (() => {
-                                if (!c) {
-                                    if (g(1), c = 1, p.readyState = WebSocket.CLOSED, f && clearTimeout(f), i) {
+                        } catch (仌) {} finally {
+                            京(), (() => {
+                                if (!亙) {
+                                    if (亦(1), 亙 = 1, 亝.readyState = WebSocket.CLOSED, 亜 && clearTimeout(亜), 亖) {
                                         try {
-                                            i.releaseLock();
-                                        } catch (e) {}
-                                        i = null;
+                                            亖.releaseLock();
+                                        } catch (仍) {}
+                                        亖 = null;
                                     }
-                                    o = null;
+                                    井 = null;
                                     try {
-                                        r.releaseLock();
-                                    } catch (e) {}
+                                        云.releaseLock();
+                                    } catch (从) {}
                                     try {
-                                        n.s?.close();
-                                    } catch (e) {}
+                                        互.s?.close();
+                                    } catch (仏) {}
                                     try {
-                                        e.close();
-                                    } catch (e) {}
+                                        亘.close();
+                                    } catch (仐) {}
                                 }
                             })();
                         }
                     },
                     cancel() {
                         try {
-                            n.s?.close();
-                        } catch (e) {}
+                            互.s?.close();
+                        } catch (仑) {}
                         try {
-                            r.releaseLock();
-                        } catch (e) {}
+                            云.releaseLock();
+                        } catch (仒) {}
                     }
                 }), {
                     status: 200,
-                    headers: c
+                    headers: 亗
                 });
-            }(e, userID);
+            }(下, userID);
         }
         return new Response("Hello World!");
     }
 };
 
-function f(e) {
-    return e?.byteLength ?? e?.length ?? 0;
+function 仓(仔) {
+    return 仔?.byteLength ?? 仔?.length ?? 0;
 }
 
-function h(e) {
-    const t = Password;
-    if (e.byteLength < 56) return {
+function 仕(他) {
+    const 仗 = Password;
+    if (他.byteLength < 56) return {
         h: 1
     };
-    if (13 !== new Uint8Array(e.slice(56, 57))[0] || 10 !== new Uint8Array(e.slice(57, 58))[0]) return {
+    if (13 !== new Uint8Array(他.slice(56, 57))[0] || 10 !== new Uint8Array(他.slice(57, 58))[0]) return {
         h: 1
     };
-    if ((new TextDecoder).decode(e.slice(0, 56)) !== t) return {
+    if ((new TextDecoder).decode(他.slice(0, 56)) !== 仗) return {
         h: 1
     };
-    const r = e.slice(58);
-    if (r.byteLength < 6) return {
+    const 付 = 他.slice(58);
+    if (付.byteLength < 6) return {
         h: 1
     };
-    const n = new DataView(r);
-    if (1 !== n.getUint8(0)) return {
+    const 仙 = new DataView(付);
+    if (1 !== 仙.getUint8(0)) return {
         h: 1
     };
-    let a = 0, s = 2, o = "";
-    switch (n.getUint8(1)) {
+    let 仚 = 0, 仛 = 2, 仜 = "";
+    switch (仙.getUint8(1)) {
       case 1:
-        a = 4, o = new Uint8Array(r.slice(s, s + a)).join(".");
+        仚 = 4, 仜 = new Uint8Array(付.slice(仛, 仛 + 仚)).join(".");
         break;
 
       case 3:
-        a = new Uint8Array(r.slice(s, s + 1))[0], s += 1, o = (new TextDecoder).decode(r.slice(s, s + a));
+        仚 = new Uint8Array(付.slice(仛, 仛 + 1))[0], 仛 += 1, 仜 = (new TextDecoder).decode(付.slice(仛, 仛 + 仚));
         break;
 
       case 4:
-        a = 16;
-        const e = new DataView(r.slice(s, s + a)), t = [];
-        for (let r = 0; r < 8; r++) t.push(e.getUint16(2 * r).toString(16));
-        o = t.join(":");
+        仚 = 16;
+        const 仝 = new DataView(付.slice(仛, 仛 + 仚)), 仞 = [];
+        for (let 仟 = 0; 仟 < 8; 仟++) 仞.push(仝.getUint16(2 * 仟).toString(16));
+        仜 = 仞.join(":");
         break;
 
       default:
@@ -605,50 +605,50 @@ function h(e) {
             h: 1
         };
     }
-    if (!o) return {
+    if (!仜) return {
         h: 1
     };
-    const i = s + a, c = r.slice(i, i + 2);
+    const 仠 = 仛 + 仚, 仡 = 付.slice(仠, 仠 + 2);
     return {
         h: 0,
-        port: new DataView(c).getUint16(0),
-        hostname: o,
-        c: r.slice(i + 4)
+        port: new DataView(仡).getUint16(0),
+        hostname: 仜,
+        c: 付.slice(仠 + 4)
     };
 }
 
-function w(e, t) {
-    if (e.byteLength < 24) return {
+function 仢(代, 令) {
+    if (代.byteLength < 24) return {
         h: 1
     };
-    const r = new Uint8Array(e.slice(0, 1));
-    if (g(new Uint8Array(e.slice(1, 17))) !== t) return {
+    const 以 = new Uint8Array(代.slice(0, 1));
+    if (佭(new Uint8Array(代.slice(1, 17))) !== 令) return {
         h: 1
     };
-    const n = new Uint8Array(e.slice(17, 18))[0], a = new Uint8Array(e.slice(18 + n, 19 + n))[0];
-    let s = 0;
-    if (1 !== a) {
-        if (2 !== a) return {
+    const 仦 = new Uint8Array(代.slice(17, 18))[0], 仧 = new Uint8Array(代.slice(18 + 仦, 19 + 仦))[0];
+    let 仨 = 0;
+    if (1 !== 仧) {
+        if (2 !== 仧) return {
             h: 1
         };
-        s = 1;
+        仨 = 1;
     }
-    const o = 19 + n, i = new DataView(e.slice(o, o + 2)).getUint16(0);
-    let c = o + 2, l = 0, u = c + 1, f = "";
-    switch (new Uint8Array(e.slice(c, u))[0]) {
+    const 仩 = 19 + 仦, 仪 = new DataView(代.slice(仩, 仩 + 2)).getUint16(0);
+    let 仫 = 仩 + 2, 们 = 0, 仭 = 仫 + 1, 仮 = "";
+    switch (new Uint8Array(代.slice(仫, 仭))[0]) {
       case 1:
-        l = 4, f = new Uint8Array(e.slice(u, u + l)).join(".");
+        们 = 4, 仮 = new Uint8Array(代.slice(仭, 仭 + 们)).join(".");
         break;
 
       case 2:
-        l = new Uint8Array(e.slice(u, u + 1))[0], u += 1, f = (new TextDecoder).decode(e.slice(u, u + l));
+        们 = new Uint8Array(代.slice(仭, 仭 + 1))[0], 仭 += 1, 仮 = (new TextDecoder).decode(代.slice(仭, 仭 + 们));
         break;
 
       case 3:
-        l = 16;
-        const t = [], r = new DataView(e.slice(u, u + l));
-        for (let e = 0; e < 8; e++) t.push(r.getUint16(2 * e).toString(16));
-        f = t.join(":");
+        们 = 16;
+        const 仯 = [], 仰 = new DataView(代.slice(仭, 仭 + 们));
+        for (let 仱 = 0; 仱 < 8; 仱++) 仯.push(仰.getUint16(2 * 仱).toString(16));
+        仮 = 仯.join(":");
         break;
 
       default:
@@ -656,293 +656,293 @@ function w(e, t) {
             h: 1
         };
     }
-    return f ? {
+    return 仮 ? {
         h: 0,
-        port: i,
-        hostname: f,
-        u: s,
-        i: u + l,
-        v: r
+        port: 仪,
+        hostname: 仮,
+        u: 仨,
+        i: 仭 + 们,
+        v: 以
     } : {
         h: 1
     };
 }
 
-async function y(o, h, w, y, d, g, L) {
-    let A = 0;
-    async function k(e, t = 1e3) {
-        await Promise.race([ e.opened, new Promise((e, r) => setTimeout(() => r(Error()), t)) ]);
+async function 仲(仳, 仴, 仵, 件, 价, 仸, 仹) {
+    let 仺 = 0;
+    async function 任(仼, 份 = 1e3) {
+        await Promise.race([ 仼.opened, new Promise((仾, 仿) => setTimeout(() => 仿(Error()), 份)) ]);
     }
-    async function U(t, r, n = null, a = null, s = 1) {
-        let o;
-        if (a && a.length > 0) for (let t = 0; t < a.length; t++) {
-            const r = (c + t) % a.length, [s, i] = a[r];
+    async function 伀(企, 伂, 伃 = null, 伄 = null, 伅 = 1) {
+        let 伆;
+        if (伄 && 伄.length > 0) for (let 伇 = 0; 伇 < 伄.length; 伇++) {
+            const 伈 = (丈 + 伇) % 伄.length, [伉, 伊] = 伄[伈];
             try {
-                if (o = e({
-                    hostname: s,
-                    port: i
-                }), await k(o), f(n) > 0) {
-                    const e = o.writable.getWriter();
-                    await e.write(n), e.releaseLock();
+                if (伆 = 一({
+                    hostname: 伉,
+                    port: 伊
+                }), await 任(伆), 仓(伃) > 0) {
+                    const 伋 = 伆.writable.getWriter();
+                    await 伋.write(伃), 伋.releaseLock();
                 }
-                return c = r, o;
-            } catch (e) {
+                return 丈 = 伈, 伆;
+            } catch (伌) {
                 try {
-                    o?.close?.();
-                } catch (e) {}
+                    伆?.close?.();
+                } catch (伍) {}
                 continue;
             }
         }
-        if (s) {
-            if (o = e({
-                hostname: t,
-                port: r
-            }), await k(o), f(n) > 0) {
-                const e = o.writable.getWriter();
-                await e.write(n), e.releaseLock();
+        if (伅) {
+            if (伆 = 一({
+                hostname: 企,
+                port: 伂
+            }), await 任(伆), 仓(伃) > 0) {
+                const 伎 = 伆.writable.getWriter();
+                await 伎.write(伃), 伎.releaseLock();
             }
-            return o;
+            return 伆;
         }
-        throw p(y), Error();
+        throw 佫(件), Error();
     }
-    async function m(s = 1) {
-        if (g.p) return void await g.p;
-        const c = s && !A && f(w) > 0, u = c ? w : null, k = (async () => {
-            let s;
-            if ("socks5" === a) s = await async function(t, r, n) {
-                const {username: a, password: s, hostname: o, port: c} = i, l = e({
-                    hostname: o,
-                    port: c
-                }), u = l.writable.getWriter(), h = l.readable.getReader();
+    async function 伏(伐 = 1) {
+        if (仸.p) return void await 仸.p;
+        const 休 = 伐 && !仺 && 仓(仵) > 0, 伒 = 休 ? 仵 : null, 伓 = (async () => {
+            let 伔;
+            if ("socks5" === 丄) 伔 = await async function(伕, 伖, 众) {
+                const {username: 优, password: 伙, hostname: 会, port: 伛} = 万, 伜 = 一({
+                    hostname: 会,
+                    port: 伛
+                }), 伝 = 伜.writable.getWriter(), 伞 = 伜.readable.getReader();
                 try {
-                    const e = a && s ? new Uint8Array([ 5, 2, 0, 2 ]) : new Uint8Array([ 5, 1, 0 ]);
-                    await u.write(e);
-                    let o = await h.read();
-                    if (o.done || o.value.byteLength < 2) throw Error();
-                    const i = new Uint8Array(o.value)[1];
-                    if (2 === i) {
-                        if (!a || !s) throw Error();
-                        const e = (new TextEncoder).encode(a), t = (new TextEncoder).encode(s), r = new Uint8Array([ 1, e.length, ...e, t.length, ...t ]);
-                        if (await u.write(r), o = await h.read(), o.done || 0 !== new Uint8Array(o.value)[1]) throw Error();
-                    } else if (0 !== i) throw Error();
-                    const c = (new TextEncoder).encode(t), w = new Uint8Array([ 5, 1, 0, 3, c.length, ...c, r >> 8, 255 & r ]);
-                    if (await u.write(w), o = await h.read(), o.done || 0 !== new Uint8Array(o.value)[1]) throw Error();
-                    return f(n) > 0 && await u.write(n), u.releaseLock(), h.releaseLock(), l;
-                } catch (e) {
+                    const 伟 = 优 && 伙 ? new Uint8Array([ 5, 2, 0, 2 ]) : new Uint8Array([ 5, 1, 0 ]);
+                    await 伝.write(伟);
+                    let 传 = await 伞.read();
+                    if (传.done || 传.value.byteLength < 2) throw Error();
+                    const 伡 = new Uint8Array(传.value)[1];
+                    if (2 === 伡) {
+                        if (!优 || !伙) throw Error();
+                        const 伢 = (new TextEncoder).encode(优), 伣 = (new TextEncoder).encode(伙), 伤 = new Uint8Array([ 1, 伢.length, ...伢, 伣.length, ...伣 ]);
+                        if (await 伝.write(伤), 传 = await 伞.read(), 传.done || 0 !== new Uint8Array(传.value)[1]) throw Error();
+                    } else if (0 !== 伡) throw Error();
+                    const 伥 = (new TextEncoder).encode(伕), 伦 = new Uint8Array([ 5, 1, 0, 3, 伥.length, ...伥, 伖 >> 8, 255 & 伖 ]);
+                    if (await 伝.write(伦), 传 = await 伞.read(), 传.done || 0 !== new Uint8Array(传.value)[1]) throw Error();
+                    return 仓(众) > 0 && await 伝.write(众), 伝.releaseLock(), 伞.releaseLock(), 伜;
+                } catch (伧) {
                     try {
-                        u.releaseLock();
-                    } catch (e) {}
+                        伝.releaseLock();
+                    } catch (伨) {}
                     try {
-                        h.releaseLock();
-                    } catch (e) {}
+                        伞.releaseLock();
+                    } catch (伩) {}
                     try {
-                        l.close();
-                    } catch (e) {}
-                    throw e;
+                        伜.close();
+                    } catch (伪) {}
+                    throw 伧;
                 }
-            }(o, h, u); else if ("http" === a || "https" === a) s = await async function(t, r, n) {
-                const {username: a, password: s, hostname: o, port: c} = i, l = e({
-                    hostname: o,
-                    port: c
-                }), u = l.writable.getWriter(), h = l.readable.getReader();
+            }(仳, 仴, 伒); else if ("http" === 丄 || "https" === 丄) 伔 = await async function(伫, 伬, 伭) {
+                const {username: 伮, password: 伯, hostname: 估, port: 伱} = 万, 伲 = 一({
+                    hostname: 估,
+                    port: 伱
+                }), 伳 = 伲.writable.getWriter(), 伴 = 伲.readable.getReader();
                 try {
-                    const e = `CONNECT ${t}:${r} HTTP/1.1\r\nHost: ${t}:${r}\r\n${a && s ? `Proxy-Authorization: Basic ${btoa(`${a}:${s}`)}\r\n` : ""}User-Agent: Mozilla/5.0\r\nConnection: keep-alive\r\n\r\n`;
-                    await u.write((new TextEncoder).encode(e));
-                    let o = new Uint8Array(0), i = -1, c = 0;
-                    for (;-1 === i && c < 8192; ) {
-                        const {done: e, value: t} = await h.read();
-                        if (e) throw Error();
-                        o = new Uint8Array([ ...o, ...t ]), c = o.length;
-                        const r = o.findIndex((e, t) => t < o.length - 3 && 13 === o[t] && 10 === o[t + 1] && 13 === o[t + 2] && 10 === o[t + 3]);
-                        -1 !== r && (i = r + 4);
+                    const 伵 = `CONNECT ${伫}:${伬} HTTP/1.1\r\nHost: ${伫}:${伬}\r\n${伮 && 伯 ? `Proxy-Authorization: Basic ${btoa(`${伮}:${伯}`)}\r\n` : ""}User-Agent: Mozilla/5.0\r\nConnection: keep-alive\r\n\r\n`;
+                    await 伳.write((new TextEncoder).encode(伵));
+                    let 伶 = new Uint8Array(0), 伷 = -1, 伸 = 0;
+                    for (;-1 === 伷 && 伸 < 8192; ) {
+                        const {done: 伹, value: 伺} = await 伴.read();
+                        if (伹) throw Error();
+                        伶 = new Uint8Array([ ...伶, ...伺 ]), 伸 = 伶.length;
+                        const 伻 = 伶.findIndex((似, 伽) => 伽 < 伶.length - 3 && 13 === 伶[伽] && 10 === 伶[伽 + 1] && 13 === 伶[伽 + 2] && 10 === 伶[伽 + 3]);
+                        -1 !== 伻 && (伷 = 伻 + 4);
                     }
-                    if (-1 === i) throw Error();
-                    const w = parseInt((new TextDecoder).decode(o.slice(0, i)).split("\r\n")[0].match(/HTTP\/\d\.\d\s+(\d+)/)[1]);
-                    if (w < 200 || w >= 300) throw Error();
-                    return f(n) > 0 && await u.write(n), u.releaseLock(), h.releaseLock(), l;
-                } catch (e) {
+                    if (-1 === 伷) throw Error();
+                    const 伾 = parseInt((new TextDecoder).decode(伶.slice(0, 伷)).split("\r\n")[0].match(/HTTP\/\d\.\d\s+(\d+)/)[1]);
+                    if (伾 < 200 || 伾 >= 300) throw Error();
+                    return 仓(伭) > 0 && await 伳.write(伭), 伳.releaseLock(), 伴.releaseLock(), 伲;
+                } catch (伿) {
                     try {
-                        u.releaseLock();
-                    } catch (e) {}
+                        伳.releaseLock();
+                    } catch (佀) {}
                     try {
-                        h.releaseLock();
-                    } catch (e) {}
+                        伴.releaseLock();
+                    } catch (佁) {}
                     try {
-                        l.close();
-                    } catch (e) {}
-                    throw e;
+                        伲.close();
+                    } catch (佂) {}
+                    throw 伿;
                 }
-            }(o, h, u); else {
-                const e = await async function(e, n = "dash.cloudflare.com", a = "00000000-0000-4000-8000-000000000000") {
-                    if (!t || !r || t !== e) {
-                        function s(e) {
-                            let t = e, r = 443;
-                            if (e.includes("]:")) {
-                                const n = e.split("]:");
-                                t = n[0] + "]", r = parseInt(n[1], 10) || r;
-                            } else if (e.includes(":") && !e.startsWith("[")) {
-                                const n = e.lastIndexOf(":");
-                                t = e.slice(0, n), r = parseInt(e.slice(n + 1), 10) || r;
+            }(仳, 仴, 伒); else {
+                const 佃 = await async function(佄, 佅 = "dash.cloudflare.com", 但 = "00000000-0000-4000-8000-000000000000") {
+                    if (!丁 || !丂 || 丁 !== 佄) {
+                        function 佇(佈) {
+                            let 佉 = 佈, 佊 = 443;
+                            if (佈.includes("]:")) {
+                                const 佋 = 佈.split("]:");
+                                佉 = 佋[0] + "]", 佊 = parseInt(佋[1], 10) || 佊;
+                            } else if (佈.includes(":") && !佈.startsWith("[")) {
+                                const 佌 = 佈.lastIndexOf(":");
+                                佉 = 佈.slice(0, 佌), 佊 = parseInt(佈.slice(佌 + 1), 10) || 佊;
                             }
-                            return [ t, r ];
+                            return [ 佉, 佊 ];
                         }
-                        e = e.toLowerCase();
-                        const o = await async function(e) {
-                            var t = e.replace(/[	"'\r\n]+/g, ",").replace(/,+/g, ",");
-                            return "," == t.charAt(0) && (t = t.slice(1)), "," == t.charAt(t.length - 1) && (t = t.slice(0, t.length - 1)), 
-                            t.split(",");
-                        }(e);
-                        let i = [];
-                        for (const f of o) {
-                            let [h, w] = s(f);
-                            if (f.includes(".tp")) {
-                                const y = f.match(/\.tp(\d+)/);
-                                y && (w = parseInt(y[1], 10));
+                        佄 = 佄.toLowerCase();
+                        const 位 = await async function(低) {
+                            var 住 = 低.replace(/[	"'\r\n]+/g, ",").replace(/,+/g, ",");
+                            return "," == 住.charAt(0) && (住 = 住.slice(1)), "," == 住.charAt(住.length - 1) && (住 = 住.slice(0, 住.length - 1)), 
+                            住.split(",");
+                        }(佄);
+                        let 佐 = [];
+                        for (const 佑 of 位) {
+                            let [佒, 体] = 佇(佑);
+                            if (佑.includes(".tp")) {
+                                const 佔 = 佑.match(/\.tp(\d+)/);
+                                佔 && (体 = parseInt(佔[1], 10));
                             }
-                            i.push([ h, w ]);
+                            佐.push([ 佒, 体 ]);
                         }
-                        const c = i.sort((e, t) => e[0].localeCompare(t[0]));
-                        let l = [ ...(n.includes(".") ? n.split(".").slice(-2).join(".") : n) + a ].reduce((e, t) => e + t.charCodeAt(0), 0);
-                        const u = [ ...c ].sort(() => (l = 1103515245 * l + 12345 & 2147483647) / 2147483647 - .5);
-                        r = u.slice(0, 8), t = e;
+                        const 何 = 佐.sort((佖, 佗) => 佖[0].localeCompare(佗[0]));
+                        let 佘 = [ ...(佅.includes(".") ? 佅.split(".").slice(-2).join(".") : 佅) + 但 ].reduce((余, 佚) => 余 + 佚.charCodeAt(0), 0);
+                        const 佛 = [ ...何 ].sort(() => (佘 = 1103515245 * 佘 + 12345 & 2147483647) / 2147483647 - .5);
+                        丂 = 佛.slice(0, 8), 丁 = 佄;
                     }
-                    return r;
-                }(n, o, L);
-                s = await U("ProxyIP.CMLiussss.net", 1, u, e, l);
+                    return 丂;
+                }(七, 仳, 仹);
+                伔 = await 伀("ProxyIP.CMLiussss.net", 1, 伒, 佃, 三);
             }
-            c && (A = 1), g.s = s, s.closed.catch(() => {}).finally(() => p(y)), b(s, y, d, null);
+            休 && (仺 = 1), 仸.s = 伔, 伔.closed.catch(() => {}).finally(() => 佫(件)), 佲(伔, 件, 价, null);
         })();
-        g.p = k;
+        仸.p = 伓;
         try {
-            await k;
+            await 伓;
         } finally {
-            g.p === k && (g.p = null);
+            仸.p === 伓 && (仸.p = null);
         }
     }
-    if (g.r = async () => m(A ? 0 : 1), a && (s || (S = o, u.some(e => new RegExp(`^${e.replace(/\*/g, ".*")}$`, "i").test(S))))) try {
-        await m();
-    } catch (e) {
-        throw e;
+    if (仸.r = async () => 伏(仺 ? 0 : 1), 丄 && (丅 || (你 = 仳, 上.some(作 => new RegExp(`^${作.replace(/\*/g, ".*")}$`, "i").test(你))))) try {
+        await 伏();
+    } catch (佝) {
+        throw 佝;
     } else try {
-        const e = await U(o, h, w);
-        g.s = e, b(e, y, d, async () => {
-            g.s === e && await m();
+        const 佞 = await 伀(仳, 仴, 仵);
+        仸.s = 佞, 佲(佞, 件, 价, async () => {
+            仸.s === 佞 && await 伏();
         });
-    } catch (e) {
-        await m();
+    } catch (佟) {
+        await 伏();
     }
-    var S;
+    var 你;
 }
 
-async function d(t, r, n) {
+async function 佡(佢, 佣, 佤) {
     try {
-        const a = e({
+        const 佥 = 一({
             hostname: "8.8.4.4",
             port: 53
         });
-        let s = n;
-        const o = a.writable.getWriter();
-        await o.write(t), o.releaseLock(), await a.readable.pipeTo(new WritableStream({
-            async write(e) {
-                if (r.readyState === WebSocket.OPEN) if (s) {
-                    const t = new Uint8Array(s.length + e.byteLength);
-                    t.set(s, 0), t.set(e, s.length), r.send(t.buffer), s = null;
-                } else r.send(e);
+        let 佦 = 佤;
+        const 佧 = 佥.writable.getWriter();
+        await 佧.write(佢), 佧.releaseLock(), await 佥.readable.pipeTo(new WritableStream({
+            async write(佨) {
+                if (佣.readyState === WebSocket.OPEN) if (佦) {
+                    const 佩 = new Uint8Array(佦.length + 佨.byteLength);
+                    佩.set(佦, 0), 佩.set(佨, 佦.length), 佣.send(佩.buffer), 佦 = null;
+                } else 佣.send(佨);
             }
         }));
-    } catch (e) {}
+    } catch (佪) {}
 }
 
-function p(e) {
+function 佫(佬) {
     try {
-        e.readyState > 0 && e.readyState < 3 && e.close();
+        佬.readyState > 0 && 佬.readyState < 3 && 佬.close();
     } catch {}
 }
 
-function g(e, t = 0) {
-    const r = [ ...e.slice(t, t + 16) ].map(e => e.toString(16).padStart(2, "0")).join("");
-    return `${r.substring(0, 8)}-${r.substring(8, 12)}-${r.substring(12, 16)}-${r.substring(16, 20)}-${r.substring(20)}`;
+function 佭(佮, 佯 = 0) {
+    const 佰 = [ ...佮.slice(佯, 佯 + 16) ].map(佱 => 佱.toString(16).padStart(2, "0")).join("");
+    return `${佰.substring(0, 8)}-${佰.substring(8, 12)}-${佰.substring(12, 16)}-${佰.substring(16, 20)}-${佰.substring(20)}`;
 }
 
-async function b(e, t, r, n) {
-    let a = r, s = 0;
-    await e.readable.pipeTo(new WritableStream({
-        async write(e, r) {
-            if (s = 1, t.readyState !== WebSocket.OPEN && r.error("ws.readyState is not open"), 
-            a) {
-                const r = new Uint8Array(a.length + e.byteLength);
-                r.set(a, 0), r.set(e, a.length), t.send(r.buffer), a = null;
-            } else t.send(e);
+async function 佲(佳, 佴, 併, 佶) {
+    let 佷 = 併, 佸 = 0;
+    await 佳.readable.pipeTo(new WritableStream({
+        async write(佹, 佺) {
+            if (佸 = 1, 佴.readyState !== WebSocket.OPEN && 佺.error("ws.readyState is not open"), 
+            佷) {
+                const 佻 = new Uint8Array(佷.length + 佹.byteLength);
+                佻.set(佷, 0), 佻.set(佹, 佷.length), 佴.send(佻.buffer), 佷 = null;
+            } else 佴.send(佹);
         }
-    })).catch(e => {
-        p(t);
-    }), !s && n && await n();
+    })).catch(佼 => {
+        佫(佴);
+    }), !佸 && 佶 && await 佶();
 }
 
-function L(e) {
-    return "speed.cloudflare.com" === e || e.endsWith(".speed.cloudflare.com");
+function 佽(佾) {
+    return "speed.cloudflare.com" === 佾 || 佾.endsWith(".speed.cloudflare.com");
 }
 
-async function A(e) {
-    const t = new URL(e.url), {searchParams: r} = t, c = decodeURIComponent(t.pathname), u = c.toLowerCase();
-    o = r.get("socks5") || r.get("http") || null, s = r.has("globalproxy") ? 1 : 0;
-    const f = (e, t = 1) => {
-        const r = /^(socks5|http):\/\/(.+)$/i.exec(e || "");
-        return r ? (a = r[1].toLowerCase(), o = r[2].split("/")[0], t && (s = 1), 1) : 0;
-    }, h = e => {
-        n = e, l = 0;
-    }, w = r.get("proxyip");
-    if (null !== w) {
-        if (!f(w)) return h(w);
+async function 使(侀) {
+    const 侁 = new URL(侀.url), {searchParams: 侂} = 侁, 侃 = decodeURIComponent(侁.pathname), 侄 = 侃.toLowerCase();
+    丆 = 侂.get("socks5") || 侂.get("http") || null, 丅 = 侂.has("globalproxy") ? 1 : 0;
+    const 侅 = (來, 侇 = 1) => {
+        const 侈 = /^(socks5|http):\/\/(.+)$/i.exec(來 || "");
+        return 侈 ? (丄 = 侈[1].toLowerCase(), 丆 = 侈[2].split("/")[0], 侇 && (丅 = 1), 1) : 0;
+    }, 侉 = 侊 => {
+        七 = 侊, 三 = 0;
+    }, 例 = 侂.get("proxyip");
+    if (null !== 例) {
+        if (!侅(例)) return 侉(例);
     } else {
-        let e = /\/(socks5?|http):\/?\/?([^/?#\s]+)/i.exec(c);
-        if (e) a = "http" === e[1].toLowerCase() ? "http" : "socks5", o = e[2].split("/")[0], 
-        s = 1; else if (e = /\/(g?s5|socks5|g?http)=([^/?#\s]+)/i.exec(c)) {
-            const t = e[1].toLowerCase();
-            o = e[2].split("/")[0], a = t.includes("http") ? "http" : "socks5", t.startsWith("g") && (s = 1);
-        } else if (e = /\/(proxyip[.=]|pyip=|ip=)([^?#\s]+)/.exec(u)) {
-            const t = (e => {
-                if (!e.includes("://")) {
-                    const t = e.indexOf("/");
-                    return t > 0 ? e.slice(0, t) : e;
+        let 侌 = /\/(socks5?|http):\/?\/?([^/?#\s]+)/i.exec(侃);
+        if (侌) 丄 = "http" === 侌[1].toLowerCase() ? "http" : "socks5", 丆 = 侌[2].split("/")[0], 
+        丅 = 1; else if (侌 = /\/(g?s5|socks5|g?http)=([^/?#\s]+)/i.exec(侃)) {
+            const 侍 = 侌[1].toLowerCase();
+            丆 = 侌[2].split("/")[0], 丄 = 侍.includes("http") ? "http" : "socks5", 侍.startsWith("g") && (丅 = 1);
+        } else if (侌 = /\/(proxyip[.=]|pyip=|ip=)([^?#\s]+)/.exec(侄)) {
+            const 侎 = (侏 => {
+                if (!侏.includes("://")) {
+                    const 侐 = 侏.indexOf("/");
+                    return 侐 > 0 ? 侏.slice(0, 侐) : 侏;
                 }
-                const t = e.split("://");
-                if (2 !== t.length) return e;
-                const r = t[1].indexOf("/");
-                return r > 0 ? `${t[0]}://${t[1].slice(0, r)}` : e;
-            })(e[2]);
-            if (!f(t)) return h(t);
+                const 侑 = 侏.split("://");
+                if (2 !== 侑.length) return 侏;
+                const 侒 = 侑[1].indexOf("/");
+                return 侒 > 0 ? `${侑[0]}://${侑[1].slice(0, 侒)}` : 侏;
+            })(侌[2]);
+            if (!侅(侎)) return 侉(侎);
         }
     }
-    if (o) try {
-        i = await function(e) {
-            const t = e.lastIndexOf("@");
-            if (-1 !== t) {
-                let r = e.slice(0, t).replaceAll("%3D", "=");
-                !r.includes(":") && k.test(r) && (r = atob(r)), e = `${r}@${e.slice(t + 1)}`;
+    if (丆) try {
+        万 = await function(侓) {
+            const 侔 = 侓.lastIndexOf("@");
+            if (-1 !== 侔) {
+                let 侕 = 侓.slice(0, 侔).replaceAll("%3D", "=");
+                !侕.includes(":") && 価.test(侕) && (侕 = atob(侕)), 侓 = `${侕}@${侓.slice(侔 + 1)}`;
             }
-            const r = e.lastIndexOf("@"), n = -1 === r ? e : e.slice(r + 1), a = -1 === r ? "" : e.slice(0, r), [s, o] = a ? a.split(":") : [];
-            if (a && !o) throw Error();
-            let i = n, c = 80;
-            if (n.includes("]:")) {
-                const [e, t = ""] = n.split("]:");
-                i = e + "]", c = Number(t.replace(/[^\d]/g, ""));
-            } else if (!n.startsWith("[")) {
-                const e = n.split(":");
-                2 === e.length && (i = e[0], c = Number(e[1].replace(/[^\d]/g, "")));
+            const 侖 = 侓.lastIndexOf("@"), 侗 = -1 === 侖 ? 侓 : 侓.slice(侖 + 1), 侘 = -1 === 侖 ? "" : 侓.slice(0, 侖), [侙, 侚] = 侘 ? 侘.split(":") : [];
+            if (侘 && !侚) throw Error();
+            let 供 = 侗, 侜 = 80;
+            if (侗.includes("]:")) {
+                const [依, 侞 = ""] = 侗.split("]:");
+                供 = 依 + "]", 侜 = Number(侞.replace(/[^\d]/g, ""));
+            } else if (!侗.startsWith("[")) {
+                const 侟 = 侗.split(":");
+                2 === 侟.length && (供 = 侟[0], 侜 = Number(侟[1].replace(/[^\d]/g, "")));
             }
-            if (isNaN(c)) throw Error();
-            if (i.includes(":") && !U.test(i)) throw Error();
+            if (isNaN(侜)) throw Error();
+            if (供.includes(":") && !侢.test(供)) throw Error();
             return {
-                username: s,
-                password: o,
-                hostname: i,
-                port: c
+                username: 侙,
+                password: 侚,
+                hostname: 供,
+                port: 侜
             };
-        }(o), a = r.get("http") ? "http" : a || "socks5";
-    } catch (e) {
-        a = null;
-    } else a = null;
+        }(丆), 丄 = 侂.get("http") ? "http" : 丄 || "socks5";
+    } catch (侠) {
+        丄 = null;
+    } else 丄 = null;
 }
 
-const k = /^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i, U = /^\[.*\]$/;
+const 価 = /^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i, 侢 = /^\[.*\]$/;
